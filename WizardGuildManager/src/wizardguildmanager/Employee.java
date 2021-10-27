@@ -16,7 +16,7 @@ public class Employee extends Member{
         super(name, gender, age, personality, memberTag);
         this.job = job;
     }
-
+    
     public Job getJob() {
         return job;
     }

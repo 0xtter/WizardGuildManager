@@ -17,14 +17,16 @@ public class Guild {
     private ArrayList <Member> members;
     private Integer numberOfMembers;
     private ArrayList <Mission> availableMissions;
-
-    public Guild(String name, String slogan, Boolean typeOfGuild, ArrayList<Member> members, Integer numberOfMembers, ArrayList<Mission> availableMissions) {
+    private int money;
+    
+    public Guild(String name, String slogan, Boolean typeOfGuild, ArrayList<Member> members, Integer numberOfMembers, ArrayList<Mission> availableMissions, int money) {
         this.name = name;
         this.slogan = slogan;
         this.typeOfGuild = typeOfGuild;
         this.members = members;
         this.numberOfMembers = numberOfMembers;
         this.availableMissions = availableMissions;
+        this.money = money;
     }
 
     public String getName() {
@@ -87,4 +89,13 @@ public class Guild {
     public void removeMission(Mission mission) {
         this.availableMissions.remove(mission);
     }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+    
 }

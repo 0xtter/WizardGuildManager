@@ -16,14 +16,16 @@ public class Adventurer extends Member{
     private ArrayList <Adventurer> friends;
     private Abilities abilities;
     private ArrayList <Mission> missions;
-
-    public Adventurer(Tier tier, Integer experience, ArrayList<Adventurer> friends, Abilities abilities, ArrayList<Mission> missions, String name, Boolean gender, Integer age, Personality personality, Integer memberTag) {
+    private MagicType magicType;
+    
+    public Adventurer(Tier tier, Integer experience, ArrayList<Adventurer> friends, Abilities abilities, ArrayList<Mission> missions, String name, Boolean gender, Integer age, Personality personality, Integer memberTag, MagicType magicType) {
         super(name, gender, age, personality, memberTag);
         this.tier = tier;
         this.experience = experience;
         this.friends = friends;
         this.abilities = abilities;
         this.missions = missions;
+        this.magicType = magicType;
     }
 
     public Tier getTier() {
@@ -73,5 +75,12 @@ public class Adventurer extends Member{
     }
     public void goOnMission() {
         System.out.println("to complete");
+    }
+    public MagicType getMagicType() {
+        return magicType;
+    }
+
+    public void setMagicType(MagicType magicType) {
+        this.magicType = magicType;
     }
 }
