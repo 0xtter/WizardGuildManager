@@ -11,27 +11,41 @@ import java.util.Arrays;
  * @author ybert
  */
 public class Mission {
+    private String entitled;
     private Tier difficulty;
-    private ArrayList <MagicType> affinity;
-    private ArrayList <Abilities> aptitudesNeeded;
+    private MagicType affinity;
+    private Abilities aptitudesNeeded;
     private String description;
+    private Integer reward;
 
-    public Mission(Tier difficulty, ArrayList<MagicType> affinity, ArrayList<Abilities> aptitudesNeeded, String description) {
+    public Mission(String entitled, Tier difficulty, MagicType affinity, Abilities aptitudesNeeded, String description, Integer reward) {
+        this.entitled = entitled;
         this.difficulty = difficulty;
         this.affinity = affinity;
         this.aptitudesNeeded = aptitudesNeeded;
         this.description = description;
+        this.reward = reward;
     }
+
+    public String getEntitled() {
+        return entitled;
+    }
+
+    public void setEntitled(String entitled) {
+        this.entitled = entitled;
+    }
+
+
 
     public Tier getDifficulty() {
         return difficulty;
     }
 
-    public ArrayList<MagicType> getAffinity() {
+    public MagicType getAffinity() {
         return affinity;
     }
 
-    public ArrayList<Abilities> getAptitudesNeeded() {
+    public Abilities getAptitudesNeeded() {
         return aptitudesNeeded;
     }
 
@@ -39,20 +53,30 @@ public class Mission {
         return description;
     }
 
+    public Integer getReward() {
+        return reward;
+    }
+
     public void setDifficulty(Tier difficulty) {
         this.difficulty = difficulty;
     }
 
-    public void setAffinity(ArrayList<MagicType> affinity) {
+    public void setAffinity(MagicType affinity) {
         this.affinity = affinity;
     }
 
-    public void setAptitudesNeeded(ArrayList<Abilities> aptitudesNeeded) {
+    public void setAptitudesNeeded(Abilities aptitudesNeeded) {
         this.aptitudesNeeded = aptitudesNeeded;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
+    public void setReward(Integer reward) {
+        this.reward = reward;
+    }
+
+
+
 }

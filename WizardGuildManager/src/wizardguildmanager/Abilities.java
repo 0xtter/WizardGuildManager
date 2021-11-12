@@ -137,5 +137,5 @@ public class Abilities {
      */
     public boolean equals(Abilities abilities) {
         return Objects.equals(abilities.endurance, this.endurance) && Objects.equals(abilities.intelligence, this.intelligence) && Objects.equals(abilities.strength, this.strength) && Objects.equals(abilities.widsom, this.widsom) && Objects.equals(abilities.charm, this.charm); //To change body of generated methods, choose Tools | Templates.
-    }    
-}
+    }
+}   
