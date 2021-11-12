@@ -13,10 +13,20 @@ public enum Tier {
     S,
     A,
     B,
-    C,
-    D,
-    E,
-    F ; 
+    C;
+
+    
+    public String toString(Tier tier) 
+    {
+        return switch (tier) 
+        {
+             case S -> "S";
+             case A -> "A";
+             case B -> "B";
+             case C -> "C";
+             default -> "C";
+        }; 
+    }
 
 }
 

@@ -15,4 +15,15 @@ public enum MagicType {
     THUNDER,
     WATER,
     SUMMONER;
+    
+    public String toString(MagicType magicType) {
+       return switch (magicType) {
+            case FIRE -> "FIRE";
+            case ICE -> "ICE";
+            case THUNDER -> "THUNDER";
+            case WATER -> "WATER";
+            case SUMMONER -> "SUMMONER";
+            default -> "FIRE";
+        }; 
+    }
 }

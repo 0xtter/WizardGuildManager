@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package wizardguildmanager.file;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -161,7 +162,7 @@ public class Fichier {
     /**
      *
      * @param repositoryPath
-     * @return ArrayList<Mission> with all the txt in the repository
+     * @return ArrayList<Mission> with all the content of txt in the repository
      */
     public static ArrayList<Mission> createListMission(String repositoryPath) //met les missions dans une liste
     {
@@ -177,7 +178,26 @@ public class Fichier {
       
       return missions;
     }
-    
+    public static void openFile(String pathFile)
+    {
+        try  
+        {  
+            //constructor of file class having file as argument  
+            File file = new File(pathFile);   
+            if(!Desktop.isDesktopSupported())//check if Desktop is supported by Platform or not  
+            {  
+            System.out.println("not supported");  
+            return;  
+            }  
+            Desktop desktop = Desktop.getDesktop();  
+            if(file.exists())         //checks file exists or not  
+            desktop.open(file);              //opens the specified file  
+        }  
+        catch(IOException e)  
+        {  
+                System.out.println("error");  
+        }         
+    }
     /**
      *Create a txt in the repository Display that show the Mission in argument
      * @param mission
@@ -189,6 +209,7 @@ public class Fichier {
         File myFile = new File (filePath + "\\Display", fileName);
         if (myFile.exists())
         {
+            openFile(filePath + "\\Display\\" + mission.getEntitled() + ".txt");
             return;
         }
         creationFile(mission.getEntitled());
@@ -197,16 +218,23 @@ public class Fichier {
         try
         {
             FileWriter fw = new FileWriter(filePath + "\\Display\\" + fileName,true);
-            fw.write("The Mission is entitled " + mission.getEntitled() + "\n\n");           
-            fw.write("In what consist the mission ?\n");
-            fw.write(" " + mission.getDescription() + "\n");
+            fw.write("INTITULE DE LA MISSION -> " + mission.getEntitled().toUpperCase() + "\n\n");           
+            fw.write("En quoi consiste la mission ? ?\n");
+            fw.write("  " + mission.getDescription() + "\n\n");
+            fw.write ("Le rang conseillé pour réaliser cette mission est le rang " + mission.getDifficulty().toString(mission.getDifficulty()) + " ou plus\n\n");
+            fw.write("Vous aurez besoin d'avoir ces compétences :\n\n" + mission.getAptitudesNeeded().toString() + "\n\n");
+            fw.write("La récompense en cas de réussite s'élève à " + mission.getReward().toString() + " pièces d'or\n\n");
             fw.close();
         }
         catch(IOException ioe)
         {
             System.out.println("error");
         }
-    }
+        
+        openFile(filePath + "\\Display\\" + mission.getEntitled() + ".txt");
+
+    }         
+    
     
 
 }
