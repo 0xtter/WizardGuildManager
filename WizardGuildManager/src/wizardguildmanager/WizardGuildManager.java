@@ -5,6 +5,7 @@
  */
 package wizardguildmanager;
 
+
 /**
  *
  * @author DESRUMEAUX Thomas
@@ -17,6 +18,7 @@ public class WizardGuildManager {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("slt");
+        
     }
     
     

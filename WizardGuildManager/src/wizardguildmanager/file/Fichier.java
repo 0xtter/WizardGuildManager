@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package files;
-import fichier.Abilities;
-import fichier.MagicType;
-import fichier.Mission;
-import fichier.Tier;
+package wizardguildmanager.file;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.Path;
-import java.util.Collections;
-import java.util.List;
 import java.nio.file.DirectoryIteratorException;
 import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
 import java.util.ArrayList;
+import wizardguildmanager.Abilities;
+import wizardguildmanager.MagicType;
+import wizardguildmanager.Mission;
+import wizardguildmanager.Tier;
 /**
  *
  * @author ybert
@@ -33,9 +33,9 @@ public class Fichier {
      * @return true if the file is created and false if the file already exist
      * @throws IOException
      */
-    public String Path = "C:\\Users\\ybert\\Desktop\\Java";
-    public static boolean creationFile(String name) throws IOException {  //création du fichier avec le nom en argument
-        File myFile = new File(Path + "\\Display",name + ".txt");
+    public static String filePath = "C:\\Users\\ybert\\Desktop\\Java";
+    public static boolean creationFile(String name) throws IOException {  
+        File myFile = new File(filePath + "\\Display",name + ".txt");
         if(myFile.createNewFile()) 
         {
             System.out.println("File has been correctly created");
@@ -49,10 +49,10 @@ public class Fichier {
     }
 
     /**
-     * Ask for a name to create a file and verify if it already exist, if yes it ask for another name
+     * Ask for a name to create a file in the repository in path and verify if it already exist, if yes it ask for another name
      * @throws IOException
      */
-    public static void newFile(String path) throws IOException //creation d'un nouveau ficier en demandant le nom en scanner
+    public static void newFile(String path) throws IOException 
     {
         
         System.out.println("entrez le nom du fichier");
@@ -70,7 +70,7 @@ public class Fichier {
      * @param filePath
      * @return
      */
-    public static List<String> readTxt(String filePath) //met toutes les données du txt dans une liste
+    public static List<String> readTxt(String filePath) 
     {
            List <String> insideFile = Collections.emptyList();          
            try 
@@ -84,6 +84,11 @@ public class Fichier {
            return insideFile;
     }
     
+    /**
+     * 
+     * @param affinity
+     * @return MagicType that correspond to the string affinity and put FIRE by default if afinity correspond to no one
+     */
     public static MagicType setMagicType(String affinity) //assigne un magictype de l'enum
     {
         return switch (affinity) {
@@ -95,6 +100,12 @@ public class Fichier {
             default -> MagicType.FIRE;
         };               
     }
+
+    /**
+     *
+     * @param difficulty
+     * @return Tier that correspond to the string difficulty and put C by default if difficulty correspond to no one
+     */
     public static Tier setTier(String difficulty) //assigne un tier de l'enum tier
     {
         return switch (difficulty) {
@@ -107,29 +118,34 @@ public class Fichier {
 }
 
     /**
-     *
+     * take the content of the file in argument and put create a Mission with the content
      * @param fileName
      * @return Mission that is described in the txt
      */
-    public static Mission extractMissionFromTxt(String fileName) //ajoute le contenue du fichier txt dans une class mission
+    public static Mission extractMissionFromTxt(String fileName) 
     {
         List <String> insideFile = Collections.emptyList(); 
         insideFile = readTxt(fileName);
-        String entitled = new String(insideFile.get(0));
+        String entitled = insideFile.get(0);
         MagicType affinity = setMagicType(insideFile.get(2));      
         Tier difficulty = setTier(insideFile.get(1));
         Abilities aptitude = new Abilities (Integer.valueOf(insideFile.get(3)),Integer.valueOf(insideFile.get(4)),Integer.valueOf(insideFile.get(5)),Integer.valueOf(insideFile.get(6)),Integer.valueOf(insideFile.get(7)));
-        String description = new String(insideFile.get(8));
+        String description = insideFile.get(8);
         Integer reward = Integer.valueOf(insideFile.get(9));
         Mission mission = new Mission(entitled, difficulty, affinity, aptitude, description, reward);
         return mission;
     }
     static Scanner keyboard = new Scanner(System.in);
     
-    public static ArrayList<String> getAllFile(String repository) //ajoute tous les noms des txt présents dans le fichier mission
+    /**
+     *
+     * @param repository
+     * @return ArrayList<String> with all files in the repository in argument 
+     */
+    public static ArrayList<String> getAllFile(String repositoryPath) 
     {
         ArrayList<String> txtList = new ArrayList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(repository)))
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(repositoryPath)))
         {
             for (Path file: stream) {
                 txtList.add(file.getFileName().toString());
@@ -142,7 +158,11 @@ public class Fichier {
         return txtList;
     }
 
-    
+    /**
+     *
+     * @param repositoryPath
+     * @return ArrayList<Mission> with all the txt in the repository
+     */
     public static ArrayList<Mission> createListMission(String repositoryPath) //met les missions dans une liste
     {
       ArrayList<Mission> missions = new ArrayList<>(); 
@@ -151,18 +171,22 @@ public class Fichier {
       for (int i = 0; i < txtList.size(); i++)
       {
           
-          missions.add(extractMissionFromTxt(repository + "\\" + txtList.get(i)));
+          missions.add(extractMissionFromTxt(repositoryPath + "\\" + txtList.get(i)));
           
       }
       
       return missions;
     }
     
-    
-    public static void createMissionFile(Mission mission) throws IOException //creation d'un fichier txt affichant la mission souhaitée
+    /**
+     *Create a txt in the repository Display that show the Mission in argument
+     * @param mission
+     * @throws IOException
+     */
+    public static void createMissionFile(Mission mission) throws IOException 
     {
-        String fileName = new String (mission.getEntitled() + ".txt");
-        File myFile = new File (Path + "\\Display", fileName);
+        String fileName = mission.getEntitled() + ".txt";
+        File myFile = new File (filePath + "\\Display", fileName);
         if (myFile.exists())
         {
             return;
@@ -172,7 +196,7 @@ public class Fichier {
         
         try
         {
-            FileWriter fw = new FileWriter(Path + "\\Display\\" + fileName,true);
+            FileWriter fw = new FileWriter(filePath + "\\Display\\" + fileName,true);
             fw.write("The Mission is entitled " + mission.getEntitled() + "\n\n");           
             fw.write("In what consist the mission ?\n");
             fw.write(" " + mission.getDescription() + "\n");
