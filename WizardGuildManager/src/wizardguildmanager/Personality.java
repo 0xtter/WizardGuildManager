@@ -16,6 +16,10 @@ public enum Personality {
     PEACFUL,
     SELFISH;
     
+    /**
+     *
+     * @return a random personality
+     */
     public static Personality rdPersonality()
     {
         int nombreAleatoire = 1 + (int)(Math.random() * ((5 - 1) + 1));

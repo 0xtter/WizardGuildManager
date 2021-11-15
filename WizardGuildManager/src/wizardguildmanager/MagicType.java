@@ -16,6 +16,11 @@ public enum MagicType {
     WATER,
     SUMMONER;
     
+    /**
+     *
+     * @param magicType
+     * @return the magicType in String
+     */
     public String toString(MagicType magicType) {
        return switch (magicType) {
             case FIRE -> "FIRE";
@@ -24,6 +29,8 @@ public enum MagicType {
             case WATER -> "WATER";
             case SUMMONER -> "SUMMONER";
             default -> "FIRE";
-        }; 
+        };
+       
     }
+   
 }

@@ -15,7 +15,11 @@ public enum Tier {
     B,
     C;
 
-    
+    /**
+     *
+     * @param tier
+     * @return the tier in String
+     */
     public String toString(Tier tier) 
     {
         return switch (tier) 
@@ -28,6 +32,46 @@ public enum Tier {
         }; 
     }
 
+    /**
+     *
+     * @param tier
+     * @return the tier in Integer (1 is the higher S and it deacrease linearly)
+     */
+    public static Integer toInteger(Tier tier)
+    {
+        return switch (tier) 
+        {
+             case S -> 1;
+             case A -> 2;
+             case B -> 3;
+             case C -> 4;
+        };         
+    }
+
+    /**
+     *
+     * @param tier
+     * @return the superior tier of the tier in argument
+     */
+    public static Tier tierUp(Tier tier)
+    {
+        Integer tierInt = Tier.toInteger(tier);
+        switch(tierInt)
+        {
+            case 2 -> {
+                return S;
+            }
+            case 3 -> {
+                return A;
+            }
+            case 4 -> {
+                return B;
+            }
+            default -> {
+                return tier;
+            }
+        }
+    }
 }
 
 
