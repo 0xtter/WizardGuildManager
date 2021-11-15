@@ -35,7 +35,7 @@ public class Fichier {
      * @throws IOException
      */
     public static String filePath = "C:\\Users\\ybert\\Desktop\\Java";
-    public static boolean creationFile(String name) throws IOException {  
+    private static boolean creationFile(String name) throws IOException {  
         File myFile = new File(filePath + "\\Display",name + ".txt");
         if(myFile.createNewFile()) 
         {
@@ -71,7 +71,7 @@ public class Fichier {
      * @param filePath
      * @return
      */
-    public static List<String> readTxt(String filePath) 
+    private static List<String> readTxt(String filePath) 
     {
            List <String> insideFile = Collections.emptyList();          
            try 
@@ -107,7 +107,7 @@ public class Fichier {
      * @param difficulty
      * @return Tier that correspond to the string difficulty and put C by default if difficulty correspond to no one
      */
-    public static Tier setTier(String difficulty) //assigne un tier de l'enum tier
+    private static Tier setTier(String difficulty) //assigne un tier de l'enum tier
     {
         return switch (difficulty) {
             case "S" -> Tier.S;
@@ -123,7 +123,7 @@ public class Fichier {
      * @param fileName
      * @return Mission that is described in the txt
      */
-    public static Mission extractMissionFromTxt(String fileName) 
+    private static Mission extractMissionFromTxt(String fileName) 
     {
         List <String> insideFile = Collections.emptyList(); 
         insideFile = readTxt(fileName);
@@ -143,7 +143,7 @@ public class Fichier {
      * @param repository
      * @return ArrayList<String> with all files in the repository in argument 
      */
-    public static ArrayList<String> getAllFile(String repositoryPath) 
+    private static ArrayList<String> getAllFile(String repositoryPath) 
     {
         ArrayList<String> txtList = new ArrayList<>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(repositoryPath)))
@@ -178,7 +178,12 @@ public class Fichier {
       
       return missions;
     }
-    public static void openFile(String pathFile)
+
+    /**
+     * Open the file located at pathFile
+     * @param pathFile
+     */
+    private static void openFile(String pathFile)
     {
         try  
         {  

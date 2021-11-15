@@ -13,21 +13,22 @@ import java.util.Arrays;
 public class Adventurer extends Member{
     private Tier tier;
     private Integer experience;
-    private ArrayList <Adventurer> friends;
     private Abilities abilities;
-    private ArrayList <Mission> missions;
     private MagicType magicType;
     
-    public Adventurer(Tier tier, Integer experience, ArrayList<Adventurer> friends, Abilities abilities, ArrayList<Mission> missions, String name, Boolean gender, Integer age, Personality personality, Integer memberTag, MagicType magicType) {
+    public Adventurer(Tier tier, Integer experience,  Abilities abilities, String name, Boolean gender, Integer age, Personality personality, Integer memberTag, MagicType magicType) {
         super(name, gender, age, personality, memberTag);
         this.tier = tier;
         this.experience = experience;
-        this.friends = friends;
         this.abilities = abilities;
-        this.missions = missions;
         this.magicType = magicType;
     }
-
+    
+    @Override
+    public void talk()
+    {
+        System.out.println("Salut ! Je suis " + this.getName() + ", je suis de rang " + this.getTier().toString(this.getTier()) + ". Je maîtrise la magie "+ this.getMagicType().toString(this.getMagicType()) + " et voici mes commpétences :\n" + this.abilities.toString());
+    }
     public Tier getTier() {
         return tier;
     }
@@ -44,9 +45,7 @@ public class Adventurer extends Member{
         return abilities;
     }
 
-    public ArrayList<Mission> getMissions() {
-        return missions;
-    }
+
 
     public void setTier(Tier tier) {
         this.tier = tier;
@@ -56,20 +55,13 @@ public class Adventurer extends Member{
         this.experience = experience;
     }
 
-    public void setFriends(ArrayList<Adventurer> friends) {
-        this.friends = friends;
-    }
+
 
     public void setAbilities(Abilities abilities) {
         this.abilities = abilities;
     }
 
-    public void setMissions(ArrayList<Mission> missions) {
-        this.missions = missions;
-    }
-    public void addFriend(Adventurer adventurer) {
-        this.friends.add(adventurer);
-    }
+
     public void levelUP() {
         System.out.println("to complete");
     }

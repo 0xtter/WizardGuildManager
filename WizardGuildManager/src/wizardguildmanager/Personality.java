@@ -15,4 +15,17 @@ public enum Personality {
     OPTIMISTIC,
     PEACFUL,
     SELFISH;
+    
+    public static Personality rdPersonality()
+    {
+        int nombreAleatoire = 1 + (int)(Math.random() * ((5 - 1) + 1));
+        return switch (nombreAleatoire) {
+            case 1 -> HYPERACTIVE;
+            case 2 -> WISE;
+            case 3 -> OPTIMISTIC;
+            case 4 -> PEACFUL;
+            case 5 -> SELFISH;
+            default -> WISE;
+        };
+    }
 }
