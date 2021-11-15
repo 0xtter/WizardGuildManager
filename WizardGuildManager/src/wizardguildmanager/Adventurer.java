@@ -37,10 +37,7 @@ public class Adventurer extends Member{
         return experience;
     }
 
-    public ArrayList<Adventurer> getFriends() {
-        return friends;
-    }
-
+   
     public Abilities getAbilities() {
         return abilities;
     }
