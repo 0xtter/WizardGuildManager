@@ -4,29 +4,26 @@
  * and open the template in the editor.
  */
 package wizardguildmanager;
+
 import java.util.ArrayList;
-import java.util.Arrays;
+
 /**
  *
  * @author ybert
  */
 public class Guild {
+
     private String name;
     private String slogan;
     private Boolean typeOfGuild;
-    private ArrayList <Member> members;
-    private Integer numberOfMembers;
-    private ArrayList <Mission> availableMissions;
+    public static ArrayList<Member> members;
+    private ArrayList<Mission> availableMissions;
     private int money;
-    
-    public Guild(String name, String slogan, Boolean typeOfGuild, ArrayList<Member> members, Integer numberOfMembers, ArrayList<Mission> availableMissions, int money) {
+
+    public Guild(String name, String slogan, Boolean typeOfGuild) {
         this.name = name;
         this.slogan = slogan;
         this.typeOfGuild = typeOfGuild;
-        this.members = members;
-        this.numberOfMembers = numberOfMembers;
-        this.availableMissions = availableMissions;
-        this.money = money;
     }
 
     public String getName() {
@@ -46,7 +43,7 @@ public class Guild {
     }
 
     public Integer getNumberOfMembers() {
-        return numberOfMembers;
+        return this.members.size();
     }
 
     public ArrayList<Mission> getAvailableMissions() {
@@ -65,10 +62,6 @@ public class Guild {
         this.typeOfGuild = typeOfGuild;
     }
 
-    public void setNumberOfMembers(Integer numberOfMembers) {
-        this.numberOfMembers = numberOfMembers;
-    }
-
     public void setMembers(ArrayList<Member> members) {
         this.members = members;
     }
@@ -76,16 +69,19 @@ public class Guild {
     public void setAvailableMissions(ArrayList<Mission> availableMissions) {
         this.availableMissions = availableMissions;
     }
-    
+
     public void addMember(Member member) {
         this.members.add(member);
     }
+
     public void removeMember(Member member) {
         this.members.remove(member);
     }
+
     public void addMission(Mission mission) {
         this.availableMissions.add(mission);
     }
+
     public void removeMission(Mission mission) {
         this.availableMissions.remove(mission);
     }
@@ -97,5 +93,10 @@ public class Guild {
     public void setMoney(int money) {
         this.money = money;
     }
-    
+
+    @Override
+    public String toString() {
+        return "------------" + name + "------------" + "\nLe slogan est '" + slogan + "'\nC'est une guilde " + (typeOfGuild? "officielle" : "clandestine") + "\nLes missions disponibles sont les suivantes : " + availableMissions + "\nVous possédez " + money + " crédits";
+    }
+
 }

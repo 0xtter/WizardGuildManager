@@ -65,8 +65,8 @@ public class Member {
     }
     
     
-    public void talk(String talking) {
-        System.out.println(talking);
+    public void talk() {
+        System.out.println("");
     }
     
     public void present(String present) {
