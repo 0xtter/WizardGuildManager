@@ -42,14 +42,19 @@ public class WizardGuildManager {
 //        GuildMaster master = new GuildMaster(name, gender, age, personality, tag);
 //        ArrayList<Member> members = new ArrayList<>();
 //        members.add(master);
-//        ArrayList<Mission> missions = new ArrayList<>();
+        //ArrayList<Mission> missions = new ArrayList<>();
 //        Guild guild = new Guild ("Guild", "slogan", true, members, 1, missions, 400);
 //        //(GuildMaster)(guild.getMembers().get(0)).recruitMember(1, guild);
 //        GuildMaster maitre = (GuildMaster) guild.getMembers().get(0);
 //        maitre.recruitMember(1, guild);
 //        System.out.println(guild.getMembers().toString());
-      Tier tier2 = Tier.A;
-        System.out.println(tier2.ordinal());
+ 
+        
+
+	
+        
+	
+
        
     }  
 }

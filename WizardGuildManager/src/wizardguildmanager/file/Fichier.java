@@ -36,9 +36,12 @@ public class Fichier {
      * @return true if the file is created and false if the file already exist
      * @throws IOException
      */
-    public static String filePath = "C:\\Users\\ybert\\Desktop\\Java";
+    public static String filePath = "./";
+    
+    
+    
     private static boolean creationFile(String name) throws IOException {  
-        File myFile = new File(filePath + "\\Display",name + ".txt");
+        File myFile = new File("./Display",name + ".txt");
         if(myFile.createNewFile()) 
         {
             System.out.println("File has been correctly created");
@@ -51,22 +54,7 @@ public class Fichier {
         }
     }
 
-    /**
-     * Ask for a name to create a file in the repository in path and verify if it already exist, if yes it ask for another name
-     * @throws IOException
-     */
-    public static void newFile(String path) throws IOException 
-    {
-        
-        System.out.println("entrez le nom du fichier");
-        String fileName = keyboard.nextLine();
-        
-        while (creationFile(path + "\\" + fileName + ".txt") == false)
-        {
-            System.out.println("ce fichier existe déjà, veuillez entrer un nouveau nom");
-            fileName = keyboard.nextLine();
-        }
-    }
+  
     
     /**
      * Put all the content of the TXT on a list and return it
@@ -92,10 +80,10 @@ public class Fichier {
      * @param fileName
      * @return Mission that is described in the txt
      */
-    private static Mission extractMissionFromTxt(String fileName) 
+    private static Mission extractMissionFromTxt(String txtPath) 
     {
         List <String> insideFile = Collections.emptyList(); 
-        insideFile = readTxt(fileName);
+        insideFile = readTxt(txtPath);
         String entitled = insideFile.get(0);
         MagicType affinity = MagicType.setMagicType(insideFile.get(2));      
         Tier difficulty = Tier.setTier(insideFile.get(1));
@@ -110,12 +98,12 @@ public class Fichier {
     /**
      *
      * @param repository
-     * @return ArrayList<String> with all files in the repository in argument 
+     * @return ArrayList<String> with all files name in the repository in argument 
      */
-    private static ArrayList<String> getAllFile(String repositoryPath) 
+    private static ArrayList<String> getAllFile() 
     {
         ArrayList<String> txtList = new ArrayList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(repositoryPath)))
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get("./Mission")))
         {
             for (Path file: stream) {
                 txtList.add(file.getFileName().toString());
@@ -133,15 +121,15 @@ public class Fichier {
      * @param repositoryPath
      * @return ArrayList<Mission> with all the content of txt in the repository
      */
-    public static ArrayList<Mission> createListMission(String repositoryPath) //met les missions dans une liste
+    public static ArrayList<Mission> createListMission() //met les missions dans une liste
     {
       ArrayList<Mission> missions = new ArrayList<>(); 
       ArrayList<String> txtList = new ArrayList<>();
-      txtList = getAllFile(repositoryPath);
+      txtList = getAllFile();
       for (int i = 0; i < txtList.size(); i++)
       {
           
-          missions.add(extractMissionFromTxt(repositoryPath + "\\" + txtList.get(i)));
+          missions.add(extractMissionFromTxt("./Mission" + "/" + txtList.get(i)));
           
       }
       
@@ -180,10 +168,10 @@ public class Fichier {
     public static void createMissionFile(Mission mission) throws IOException 
     {
         String fileName = mission.getEntitled() + ".txt";
-        File myFile = new File (filePath + "\\Display", fileName);
+        File myFile = new File ( "./Display", fileName);
         if (myFile.exists())
         {
-            openFile(filePath + "\\Display\\" + mission.getEntitled() + ".txt");
+            openFile("./Display/" + mission.getEntitled() + ".txt");
             return;
         }
         creationFile(mission.getEntitled());
@@ -191,7 +179,7 @@ public class Fichier {
         
         try
         {
-            FileWriter fw = new FileWriter(filePath + "\\Display\\" + fileName,true);
+            FileWriter fw = new FileWriter("./Display/" + fileName,true);
             fw.write("INTITULE DE LA MISSION -> " + mission.getEntitled().toUpperCase() + "\n\n");           
             fw.write("En quoi consiste la mission ? ?\n");
             fw.write("  " + mission.getDescription() + "\n\n");
@@ -206,7 +194,7 @@ public class Fichier {
             System.out.println("error");
         }
         
-        openFile(filePath + "\\Display\\" + mission.getEntitled() + ".txt");
+        openFile("./Display/" + mission.getEntitled() + ".txt");
 
     }         
     
