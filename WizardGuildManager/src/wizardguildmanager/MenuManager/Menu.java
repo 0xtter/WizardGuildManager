@@ -6,12 +6,15 @@
 package wizardguildmanager.MenuManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import wizardguildmanager.Guild;
 import wizardguildmanager.GuildMaster;
+import wizardguildmanager.Member;
+import wizardguildmanager.Mission;
 import wizardguildmanager.Personality;
 
 /**
@@ -21,8 +24,8 @@ import wizardguildmanager.Personality;
 public class Menu {
 
     public static Map<String, Menu> menus = new HashMap<String, Menu>();
-    private final String title;
-    private final String menuDescription;
+    private String title;
+    public String menuDescription;
     public ArrayList<String> options = new ArrayList<>();
     private final int menuWidth = 50;
     private final String menuCharacter = "-";
@@ -34,13 +37,16 @@ public class Menu {
         menus.put(title, this);
     }
 
+    /**
+     * Create the menu of the Guild Manager
+     */
     public static void createMenu() {
         new Start("Commencer", "Bienvenue dans le jeu de gestion de guilde");
         new GuildManager("Gestion de Guilde", "Choisissez un action à effectuer");
-        new ControlMember("Contrôler un membre", "Choisissez un type de memebre à contrôler");
         new ListMember("Liste des membres", "Quel membre choisissez-vous?");
-        new Adventurer("Aventurier", "Que doit faire l'aventurier?");
-        new RecruitMember("Recruter un membre", "Quel type de membre voulez-vous recruter?");
+        new AdventurerMenu("Aventurier", "Que doit faire l'aventurier?");
+        new GuildMasterMenu("Maitre de guilde", "Que doit faire le maitre de guilde?");
+        new EmployeeMenu("Employé", "Que doit faire l'employé?");
         new ListMission("Liste des missions", "Quelle mission voulez vous consulter?");
     }
 
@@ -81,6 +87,46 @@ public class Menu {
         }
     }
 
+    public Member getAMember(Guild guild, ArrayList<String> types) {
+        this.title = "Liste des membres";
+        this.menuDescription = "Veuillez selectionner un membre";
+        this.options = new ArrayList<>();
+        ArrayList<Member> members = new ArrayList<>();
+        for (Member member : guild.getMembers()) {
+            if (types.contains(member.getClass().getSimpleName())) {
+                this.options.add(member.getName() + " (" + member.getClass().getSimpleName() + ")");
+                members.add(member);
+            }
+        }
+        this.showMenu();
+        int input = this.getChoice();
+
+        if (input >= 0 && input < members.size()) {
+            return members.get(input);
+        } else {
+            return this.getAMember(guild, types);
+        }
+
+    }
+
+    public Mission getAMission(Guild guild) {
+        this.title = "Liste des missions";
+        this.menuDescription = "Veuillez selectionner une mission";
+        this.options = new ArrayList<>();
+        ArrayList<Mission> missions = new ArrayList<>();
+        for (Mission mission : guild.getAvailableMissions()) {
+            this.options.add(mission.getEntitled() + " (" + mission.getDifficulty() + ")");
+            missions.add(mission);
+        }
+        this.showMenu();
+        int input = this.getChoice();
+        if (input >= 0 && input < missions.size()) {
+            return missions.get(input);
+        } else {
+            return getAMission(guild);
+        }
+    }
+
     private static GuildMaster createGuildMaster(Guild guild) {
 
         Boolean gender;
@@ -106,7 +152,7 @@ public class Menu {
             }
         } while (!(age > 0));
         Personality personality = Personality.rdPersonality();
-        return new GuildMaster(name,gender,age,personality,0);
+        return new GuildMaster(name, gender, age, personality, 0);
     }
 
     public static Guild createGuild() {
@@ -141,7 +187,7 @@ public class Menu {
             guild.addMember(gm);
         } catch (InputMismatchException e) {
             System.out.println("Une erreur a eu lieu lors de la création de la guilde... Veuillez réessayer");
-            keyboard = new Scanner(System.in);
+            keyboard = new Scanner(System.in); //On reset le buffer d'entrée pour éviter toute nouvelle erreur suite à une ancienne entrée
             Menu.createGuild();
         }
         return guild;

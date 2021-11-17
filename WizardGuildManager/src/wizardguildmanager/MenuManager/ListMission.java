@@ -22,7 +22,7 @@ public class ListMission extends Menu {
     @Override
     public void execute(Guild guild) {
         ArrayList<String> newList = new ArrayList<>();
-        newList.add("Quitter");
+        newList.add("Retour");
         for (Mission mission : guild.getAvailableMissions()) {
             newList.add(mission.getEntitled());
         }
@@ -34,19 +34,14 @@ public class ListMission extends Menu {
     private void runOption(int choice, Guild guild) {
         switch (choice) {
             case 0:
-                System.exit(0);
-                break;
-            case 1:
-                System.out.println("Mission 1");
-                break;
-            case 2:
-                System.out.println("Mission 2");
-                break;
-            case 3:
-                System.out.println("Mission 3");
+                Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             default:
-                this.execute(guild);
+                if (choice >= 0 && choice <= guild.getAvailableMissions().size()) {
+                    System.out.println("Lancer affichage des missions de Yanis");
+                } else {
+                    this.execute(guild);
+                }
                 break;
         }
     }

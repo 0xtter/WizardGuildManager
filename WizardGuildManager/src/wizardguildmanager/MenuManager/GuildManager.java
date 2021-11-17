@@ -7,7 +7,11 @@ package wizardguildmanager.MenuManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import wizardguildmanager.Adventurer;
+import wizardguildmanager.Employee;
 import wizardguildmanager.Guild;
+import wizardguildmanager.GuildMaster;
+import wizardguildmanager.Member;
 
 /**
  *
@@ -19,10 +23,11 @@ public class GuildManager extends Menu {
         super(title, menuDescription);
     }
 
+    @Override
     public void execute(Guild guild) {
-        super.options = new ArrayList<>(Arrays.asList("Quitter", "Contrôler un membre", "Consulter la liste des missions", "Voir état de la guilde"));
+        super.options = new ArrayList<>(Arrays.asList("Quitter", "Contrôler un membre", "Voir état de la guilde"));
         super.showMenu();
-        this.runOption(super.getChoice(),guild);
+        this.runOption(super.getChoice(), guild);
     }
 
     public void runOption(int choice, Guild guild) {
@@ -31,16 +36,27 @@ public class GuildManager extends Menu {
                 System.exit(0);
                 break;
             case 1:
-                System.out.println("Contrôler un membre");
-                Menu.menus.get("Liste des membres").execute(guild);
+                Member member1 = super.getAMember(guild, new ArrayList(Arrays.asList("Adventurer","Employee","GuildMaster","Member")));
+                System.out.println(member1);
+                switch(member1.getClass().getSimpleName()){
+                    case "Adventurer":
+                        ((AdventurerMenu) Menu.menus.get("Aventurier")).execute(guild, (Adventurer)member1);
+                        break;
+                    case "GuildMaster":
+                        ((GuildMasterMenu) Menu.menus.get("Maitre de guilde")).execute(guild, (GuildMaster)member1);
+                        break;
+                                
+                    case "Employee":
+                        ((EmployeeMenu) Menu.menus.get("Employé")).execute(guild, (Employee)member1);
+                        break;
+                    default:
+                        Menu.menus.get("Gestion de Guilde").execute(guild);
+                        break;
+                }
                 break;
             case 2:
-                System.out.println("Consulter la liste des missions");
-                Menu.menus.get("Liste des missions");
-                break;
-            case 3:
-                System.out.println("Voir état de la guilde");
-                System.out.println(guild.toString());
+                System.out.println("\n" + guild.toString() + "\n");
+                Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             default:
                 this.execute(guild);

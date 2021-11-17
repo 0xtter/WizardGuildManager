@@ -15,10 +15,10 @@ public class Adventurer extends Member{
     private Integer experience;
     private ArrayList <Adventurer> friends;
     private Abilities abilities;
-    private ArrayList <Mission> missions;
+    private Mission missions;
     private MagicType magicType;
     
-    public Adventurer(Tier tier, Integer experience, ArrayList<Adventurer> friends, Abilities abilities, ArrayList<Mission> missions, String name, Boolean gender, Integer age, Personality personality, Integer memberTag, MagicType magicType) {
+    public Adventurer(Tier tier, Integer experience, ArrayList<Adventurer> friends, Abilities abilities, Mission missions, String name, Boolean gender, Integer age, Personality personality, Integer memberTag, MagicType magicType) {
         super(name, gender, age, personality, memberTag);
         this.tier = tier;
         this.experience = experience;
@@ -44,7 +44,7 @@ public class Adventurer extends Member{
         return abilities;
     }
 
-    public ArrayList<Mission> getMissions() {
+    public Mission getMissions() {
         return missions;
     }
 
@@ -64,7 +64,7 @@ public class Adventurer extends Member{
         this.abilities = abilities;
     }
 
-    public void setMissions(ArrayList<Mission> missions) {
+    public void setMissions(Mission missions) {
         this.missions = missions;
     }
     public void addFriend(Adventurer adventurer) {

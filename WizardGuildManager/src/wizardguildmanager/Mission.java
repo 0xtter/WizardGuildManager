@@ -26,6 +26,9 @@ public class Mission {
         this.description = description;
         this.reward = reward;
     }
+    public Mission(){
+        System.out.println("created mission");
+    }
 
     public String getEntitled() {
         return entitled;
