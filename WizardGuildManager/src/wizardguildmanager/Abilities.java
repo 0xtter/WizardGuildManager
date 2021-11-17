@@ -6,6 +6,7 @@
 package wizardguildmanager;
 
 import java.util.Objects;
+import static wizardguildmanager.GuildMaster.keyboard;
 
 /**
  *
@@ -137,5 +138,80 @@ public class Abilities {
      */
     public boolean equals(Abilities abilities) {
         return Objects.equals(abilities.endurance, this.endurance) && Objects.equals(abilities.intelligence, this.intelligence) && Objects.equals(abilities.strength, this.strength) && Objects.equals(abilities.widsom, this.widsom) && Objects.equals(abilities.charm, this.charm); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    /**
+     * ask for the user to enter the different abilities
+     * @return an object abilities
+     */
+    public static Abilities pointAbility()
+    {
+        Integer point = 10;
+        Integer strength = -1;
+        Integer intelligence = -1;
+        Integer widsom = -1;
+        Integer endurance = -1;
+        Integer charm = -1;
+        do {
+            try {
+                System.out.println("Combien de point voulez-vous attribuer en force (entre 0 et 5) sachant qu'il vous reste ?" + point +" points");
+                strength = Integer.parseInt(keyboard.nextLine());
+            }
+            catch(NumberFormatException e){
+                System.out.println("Veuillez entrer un entier positif entre 0 et 5");
+            }
+        } while ((strength < 0 || strength > 5 || (point - strength) < 0));
+        point = point - strength;
+        do {
+            try {
+                System.out.println("Combien de point voulez-vous attribuer en intelligence (entre 0 et 5) sachant qu'il vous reste ?" + point +" points");
+                intelligence = Integer.parseInt(keyboard.nextLine());
+            }
+            catch(NumberFormatException e){
+                System.out.println("Veuillez entrer un entier positif entre 0 et 5");
+            }
+        } while ((intelligence < 0 || intelligence > 5 || (point - intelligence) < 0));
+        point = point - intelligence;
+        if (point.equals(0))
+        {
+            widsom =0;
+            endurance = 0;
+            charm = 0;
+        }
+        else
+        {
+            do {
+                try {
+                    System.out.println("Combien de point voulez-vous attribuer en sagesse (entre 0 et 5) sachant qu'il vous reste ?" + point +" points");
+                    widsom = Integer.parseInt(keyboard.nextLine());
+                }
+                catch(NumberFormatException e){
+                    System.out.println("Veuillez entrer un entier positif entre 0 et 5");
+                }
+            } while ((widsom < 0 || widsom > 5 || (point - widsom) < 0));
+            point = point - widsom;
+            if (point.equals(0))
+                {
+                    endurance = 0;
+                    charm = 0;
+                }
+            else
+            {
+                do {
+                    try {
+                        System.out.println("Combien de point voulez-vous attribuer en endurance (entre 0 et 5) sachant qu'il vous reste ?" + point +" points");
+                        endurance = Integer.parseInt(keyboard.nextLine());
+                    }
+                    catch(NumberFormatException e){
+                        System.out.println("Veuillez entrer un entier positif entre 0 et 5");
+                    }
+                } while ((endurance < 0 || endurance > 5 || (point - endurance) < 0));
+                point = point - endurance;
+            }
+            charm = point;
+        }
+        Abilities ability = new Abilities(strength, intelligence, widsom, endurance, charm);
+        return ability;
     }
 }   

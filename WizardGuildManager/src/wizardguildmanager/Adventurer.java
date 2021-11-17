@@ -5,9 +5,6 @@
  */
 package wizardguildmanager;
 
-import static wizardguildmanager.WizardGuildManager.probaCalculation;
-import static wizardguildmanager.WizardGuildManager.success;
-
 /**
  *
  * @author ybert
@@ -133,8 +130,8 @@ public class Adventurer extends Member{
      * @param guild
      */
     public void goOnMission(Mission mission, Guild guild) {
-        Integer proba = probaCalculation(mission, this);
-        boolean succeedeed = success(proba);
+        Integer proba = mission.probaCalculation(this);
+        boolean succeedeed = Mission.success(proba);
         if (succeedeed == true)
         {
             System.out.println("La mission est un succès félicitation ! Vous avez gagné " + mission.getReward() + " pièces d'or et vous avez gagné " + (100 + 100 - proba) + " points d'expérience !");

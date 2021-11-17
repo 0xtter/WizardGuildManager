@@ -6,7 +6,7 @@
 package wizardguildmanager;
 
 import java.util.Scanner;
-import static wizardguildmanager.WizardGuildManager.pointAbility;
+
 
 
 /**
@@ -73,7 +73,7 @@ public class GuildMaster extends Member{
         {
             case 1 -> {
                 System.out.println("Vous avez 10 points d'abilité à répartir");
-                Abilities ability = pointAbility();
+                Abilities ability = Abilities.pointAbility();
                 System.out.println("Quel type de magie votre mage maîtrise ?\n1) Fire\n2) Ice\n3) Thunder\n4) Water\n5) Summoner\nentrez 1, 2, 3, 4 ou 5");
                 Integer magicNumber = -1;
                 do {
