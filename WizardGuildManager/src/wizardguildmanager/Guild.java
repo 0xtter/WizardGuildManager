@@ -6,7 +6,6 @@
 package wizardguildmanager;
 
 import java.util.ArrayList;
-
 /**
  *
  * @author ybert
