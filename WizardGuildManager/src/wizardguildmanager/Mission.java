@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package wizardguildmanager;
-import java.util.ArrayList;
-import java.util.Arrays;
 /**
  *
  * @author ybert

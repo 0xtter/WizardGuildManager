@@ -44,7 +44,7 @@ public class Adventurer extends Member{
     @Override
     public void talk()
     {
-        System.out.println("Salut ! Je suis " + this.getName() + ", je suis de rang " + this.getTier().toString(this.getTier()) + ". Je maîtrise la magie "+ this.getMagicType().toString(this.getMagicType()) + " et voici mes commpétences :\n" + this.abilities.toString());
+        System.out.println("Salut ! Je suis " + this.getName() + ", je suis de rang " + this.getTier().toString() + ". Je maîtrise la magie "+ this.getMagicType().toString() + " et voici mes commpétences :\n" + this.abilities.toString());
     }
 
     /**

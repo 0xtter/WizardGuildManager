@@ -95,8 +95,8 @@ public class WizardGuildManager {
     public static Integer probaCalculation(Mission mission, Adventurer adventurer)
     {
         Integer proba = 100;
-        Integer DifficultyInt =  Tier.toInteger(mission.getDifficulty());
-        Integer TierInt = Tier.toInteger(adventurer.getTier());
+        Integer DifficultyInt =  mission.getDifficulty().ordinal() + 1;
+        Integer TierInt = adventurer.getTier().ordinal() + 1;
         if (TierInt < DifficultyInt) proba = proba - (DifficultyInt - TierInt) * 15;
         if (adventurer.getAbilities().getStrength() < mission.getAptitudesNeeded().getStrength()) proba = proba - (mission.getAptitudesNeeded().getStrength() - adventurer.getAbilities().getStrength()) * 5;
         if (adventurer.getAbilities().getIntelligence()< mission.getAptitudesNeeded().getIntelligence()) proba = proba - (mission.getAptitudesNeeded().getIntelligence() - adventurer.getAbilities().getIntelligence()) * 5;
@@ -153,6 +153,8 @@ public class WizardGuildManager {
 //        GuildMaster maitre = (GuildMaster) guild.getMembers().get(0);
 //        maitre.recruitMember(1, guild);
 //        System.out.println(guild.getMembers().toString());
+      Tier tier2 = Tier.A;
+        System.out.println(tier2.ordinal());
        
     }  
 }

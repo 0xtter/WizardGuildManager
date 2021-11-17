@@ -20,8 +20,10 @@ import java.util.List;
 import java.util.ArrayList;
 import wizardguildmanager.Abilities;
 import wizardguildmanager.MagicType;
+import static wizardguildmanager.MagicType.setMagicType;
 import wizardguildmanager.Mission;
 import wizardguildmanager.Tier;
+import static wizardguildmanager.Tier.setTier;
 /**
  *
  * @author ybert
@@ -86,39 +88,6 @@ public class Fichier {
     }
     
     /**
-     * 
-     * @param affinity
-     * @return MagicType that correspond to the string affinity and put FIRE by default if afinity correspond to no one
-     */
-    public static MagicType setMagicType(String affinity) //assigne un magictype de l'enum
-    {
-        return switch (affinity) {
-            case "FIRE" -> MagicType.FIRE;
-            case "ICE" -> MagicType.ICE;
-            case "THUNDER" -> MagicType.THUNDER;
-            case "WATER" -> MagicType.WATER;
-            case "SUMMONER" -> MagicType.SUMMONER;
-            default -> MagicType.FIRE;
-        };               
-    }
-
-    /**
-     *
-     * @param difficulty
-     * @return Tier that correspond to the string difficulty and put C by default if difficulty correspond to no one
-     */
-    private static Tier setTier(String difficulty) //assigne un tier de l'enum tier
-    {
-        return switch (difficulty) {
-            case "S" -> Tier.S;
-            case "A" -> Tier.A;
-            case "B" -> Tier.B;
-            case "C" -> Tier.C;
-            default -> Tier.C;
-        };               
-}
-
-    /**
      * take the content of the file in argument and put create a Mission with the content
      * @param fileName
      * @return Mission that is described in the txt
@@ -128,8 +97,8 @@ public class Fichier {
         List <String> insideFile = Collections.emptyList(); 
         insideFile = readTxt(fileName);
         String entitled = insideFile.get(0);
-        MagicType affinity = setMagicType(insideFile.get(2));      
-        Tier difficulty = setTier(insideFile.get(1));
+        MagicType affinity = MagicType.setMagicType(insideFile.get(2));      
+        Tier difficulty = Tier.setTier(insideFile.get(1));
         Abilities aptitude = new Abilities (Integer.valueOf(insideFile.get(3)),Integer.valueOf(insideFile.get(4)),Integer.valueOf(insideFile.get(5)),Integer.valueOf(insideFile.get(6)),Integer.valueOf(insideFile.get(7)));
         String description = insideFile.get(8);
         Integer reward = Integer.valueOf(insideFile.get(9));
@@ -226,9 +195,10 @@ public class Fichier {
             fw.write("INTITULE DE LA MISSION -> " + mission.getEntitled().toUpperCase() + "\n\n");           
             fw.write("En quoi consiste la mission ? ?\n");
             fw.write("  " + mission.getDescription() + "\n\n");
-            fw.write ("Le rang conseillé pour réaliser cette mission est le rang " + mission.getDifficulty().toString(mission.getDifficulty()) + " ou plus\n\n");
+            fw.write ("Le rang conseillé pour réaliser cette mission est le rang " + mission.getDifficulty().toString() + " ou plus\n\n");
             fw.write("Vous aurez besoin d'avoir ces compétences :\n\n" + mission.getAptitudesNeeded().toString() + "\n\n");
             fw.write("La récompense en cas de réussite s'élève à " + mission.getReward().toString() + " pièces d'or\n\n");
+            fw.write("Vous devrez maîtriser cette magie : " + mission.getAffinity().toString());
             fw.close();
         }
         catch(IOException ioe)

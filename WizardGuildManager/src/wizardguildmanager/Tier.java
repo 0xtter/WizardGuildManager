@@ -20,9 +20,10 @@ public enum Tier {
      * @param tier
      * @return the tier in String
      */
-    public String toString(Tier tier) 
+    @Override
+    public String toString(Tier this) 
     {
-        return switch (tier) 
+        return switch (this) 
         {
              case S -> "S";
              case A -> "A";
@@ -32,22 +33,7 @@ public enum Tier {
         }; 
     }
 
-    /**
-     *
-     * @param tier
-     * @return the tier in Integer (1 is the higher S and it deacrease linearly)
-     */
-    public static Integer toInteger(Tier tier)
-    {
-        return switch (tier) 
-        {
-             case S -> 1;
-             case A -> 2;
-             case B -> 3;
-             case C -> 4;
-        };         
-    }
-
+  
     /**
      *
      * @param tier
@@ -55,7 +41,7 @@ public enum Tier {
      */
     public static Tier tierUp(Tier tier)
     {
-        Integer tierInt = Tier.toInteger(tier);
+        Integer tierInt = tier.ordinal() + 1;
         switch(tierInt)
         {
             case 2 -> {
@@ -72,6 +58,22 @@ public enum Tier {
             }
         }
     }
+    
+    /**
+     *
+     * @param difficulty
+     * @return the tier that correspond to the string
+     */
+    public static Tier setTier(String difficulty) //assigne un tier de l'enum tier
+    {
+        return switch (difficulty) {
+            case "S" -> Tier.S;
+            case "A" -> Tier.A;
+            case "B" -> Tier.B;
+            case "C" -> Tier.C;
+            default -> Tier.C;
+        };               
+}
 }
 
 
