@@ -6,7 +6,6 @@
 package wizardguildmanager.MenuManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -115,7 +114,7 @@ public class Menu {
         this.options = new ArrayList<>();
         ArrayList<Mission> missions = new ArrayList<>();
         for (Mission mission : guild.getAvailableMissions()) {
-            this.options.add(mission.getEntitled() + " (" + mission.getDifficulty() + ")");
+            this.options.add(mission.getEntitled() + " (difficulté " + mission.getDifficulty() + ")");
             missions.add(mission);
         }
         this.showMenu();
@@ -127,71 +126,9 @@ public class Menu {
         }
     }
 
-    private static GuildMaster createGuildMaster(Guild guild) {
 
-        Boolean gender;
-        System.out.println("Quel nom voulez vous donner à votre Maître de guilde ?");
-        String name = keyboard.nextLine();
-        Integer genderType = -1;
-        do {
-            try {
-                System.out.println("Quel est le sexe de votre Maître de guilde ?\n0) Homme\n1) Femme\n(entrez '0' ou '1')");
-                genderType = Integer.parseInt(keyboard.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Veuillez entrer le nombre 0 ou 1");
-            }
-        } while (!(genderType == 1 || genderType == 0));
-        gender = (genderType.equals(1));
-        Integer age = -1;
-        do {
-            try {
-                System.out.println("Quel est l'âge du Maître de guilde?");
-                age = Integer.parseInt(keyboard.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Veuillez entrer un entier positif");
-            }
-        } while (!(age > 0));
-        Personality personality = Personality.rdPersonality();
-        return new GuildMaster(name, gender, age, personality, 0);
-    }
 
-    public static Guild createGuild() {
-        keyboard = new Scanner(System.in);
-        Guild guild = new Guild("Nom de la Guilde", "Slogan de la guilde", true);
-        GuildMaster gm = new GuildMaster("Nom du Maitre de Guilde", true, 0, Personality.OPTIMISTIC, 0);
-        try {
-            System.out.println("Entrez le nom de la guilde que vous souhaitez créer :");
-            guild.setName(keyboard.nextLine());
-
-            System.out.println("Entrez le slogan de la guilde : " + guild.getName());
-            guild.setSlogan(keyboard.nextLine());
-
-            Integer guildType = -1;
-            do {
-                try {
-                    System.out.print("La guilde " + guild.getName() + " est-elle une guilde officielle(1) ou clandestine(0)?");
-                    guildType = Integer.parseInt(keyboard.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Veuillez entrer le nombre 0 ou 1");
-                }
-            } while (!(guildType == 1 || guildType == 0));
-
-            guild.setTypeOfGuild((guildType == 1) ? Boolean.TRUE : Boolean.FALSE);
-            guild.setAvailableMissions(new ArrayList<>());
-            guild.setMembers(new ArrayList<>());
-            guild.setMoney(300);
-            System.out.println("\n" + guild.toString() + "\n");
-            //Création du Guild Master
-
-            gm = createGuildMaster(guild);
-            guild.addMember(gm);
-        } catch (InputMismatchException e) {
-            System.out.println("Une erreur a eu lieu lors de la création de la guilde... Veuillez réessayer");
-            keyboard = new Scanner(System.in); //On reset le buffer d'entrée pour éviter toute nouvelle erreur suite à une ancienne entrée
-            Menu.createGuild();
-        }
-        return guild;
-    }
+    
 
     @Override
     public String toString() {

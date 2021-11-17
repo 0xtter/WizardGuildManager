@@ -155,7 +155,7 @@ public class Abilities {
         Integer charm = -1;
         do {
             try {
-                System.out.println("Combien de point voulez-vous attribuer en force (entre 0 et 5) sachant qu'il vous reste ?" + point +" points");
+                System.out.print("\nCombien de points voulez-vous attribuer en force (entre 0 et 5) sachant qu'il vous reste " + point +" points");
                 strength = Integer.parseInt(keyboard.nextLine());
             }
             catch(NumberFormatException e){
@@ -165,7 +165,7 @@ public class Abilities {
         point = point - strength;
         do {
             try {
-                System.out.println("Combien de point voulez-vous attribuer en intelligence (entre 0 et 5) sachant qu'il vous reste ?" + point +" points");
+                System.out.print("\nCombien de points voulez-vous attribuer en intelligence (entre 0 et 5) sachant qu'il vous reste " + point +" points");
                 intelligence = Integer.parseInt(keyboard.nextLine());
             }
             catch(NumberFormatException e){
@@ -183,7 +183,7 @@ public class Abilities {
         {
             do {
                 try {
-                    System.out.println("Combien de point voulez-vous attribuer en sagesse (entre 0 et 5) sachant qu'il vous reste ?" + point +" points");
+                    System.out.print("\nCombien de points voulez-vous attribuer en sagesse (entre 0 et 5) sachant qu'il vous reste " + point +" points");
                     widsom = Integer.parseInt(keyboard.nextLine());
                 }
                 catch(NumberFormatException e){
@@ -200,7 +200,7 @@ public class Abilities {
             {
                 do {
                     try {
-                        System.out.println("Combien de point voulez-vous attribuer en endurance (entre 0 et 5) sachant qu'il vous reste ?" + point +" points");
+                        System.out.print("\nCombien de points voulez-vous attribuer en endurance (entre 0 et 5) sachant qu'il vous reste " + point +" points");
                         endurance = Integer.parseInt(keyboard.nextLine());
                     }
                     catch(NumberFormatException e){

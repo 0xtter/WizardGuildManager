@@ -5,11 +5,13 @@
  */
 package wizardguildmanager;
 
+import java.io.IOException;
+
 /**
  *
  * @author ybert
  */
-public class Employee extends Member{
+public class Employee extends Member implements MissionWriter{
     private Job job;
 
     /**
@@ -40,6 +42,15 @@ public class Employee extends Member{
      */
     public void setJob(Job job) {
         this.job = job;
+    }
+    
+    @Override
+    public void writeMissionManuscript(Mission mission){
+        try {
+            MissionWriter.super.writeMissionManuscript(mission);
+        } catch (IOException ex) {
+            System.out.println("Il n'y a plus d'encre!");
+        }
     }
     
 }

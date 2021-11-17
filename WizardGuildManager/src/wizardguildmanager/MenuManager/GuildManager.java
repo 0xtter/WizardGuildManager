@@ -56,6 +56,7 @@ public class GuildManager extends Menu {
                 break;
             case 2:
                 System.out.println("\n" + guild.toString() + "\n");
+                keyboard.nextLine();
                 Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             default:

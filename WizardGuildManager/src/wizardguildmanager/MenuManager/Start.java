@@ -20,7 +20,6 @@ public class Start extends Menu {
 
     }
 
-    
     public Guild execute() {
         super.options = new ArrayList<>(Arrays.asList("Quitter", "Créer une nouvelle partie"));
         super.showMenu();
@@ -28,19 +27,19 @@ public class Start extends Menu {
     }
 
     private Guild runOption(int choice) {
-        Guild guild = new Guild("Nom de Guilde", "Slogan de la Guilde yaay!",true);
+        Guild guild = new Guild();
         switch (choice) {
             case 0:
                 System.exit(0);
                 break;
             case 1:
-                guild = Menu.createGuild();
+                guild = Guild.createGuild();
                 break;
             default:
                 guild = runOption(super.getChoice());
                 break;
-          
+
         }
-    return guild;
+        return guild;
     }
 }

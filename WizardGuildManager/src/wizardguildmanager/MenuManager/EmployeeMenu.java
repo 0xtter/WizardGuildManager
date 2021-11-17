@@ -33,8 +33,8 @@ public class EmployeeMenu extends Menu {
                 break;
             case 1:
                 emp.talk();
-                super.getAMission(guild);
-                System.out.println("Print a mission");
+                emp.writeMissionManuscript(super.getAMission(guild)); 
+                Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             default:
                 this.execute(guild);

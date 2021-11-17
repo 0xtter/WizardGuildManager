@@ -21,11 +21,7 @@ public class WizardGuildManager {
      */
     static Scanner keyboard = new Scanner(System.in);
     public static void main(String[] args) throws IOException {
-        //Guild guild = new Guild("Nom de Guilde", "Slogan de la Guilde yaay!",true);
-        //System.out.println(guild.getClass().getName());
         Menu.createMenu();
-        Menu.menus.get("e");
-        //Guild guild = Menu.createGuild();
         
         Start start = (Start)(Menu.menus.get("Commencer"));
         Guild guild = start.execute();
@@ -33,7 +29,7 @@ public class WizardGuildManager {
         guild.addMember(new Member("Michel", true, 64, Personality.OPTIMISTIC, 1));
         
         guild.addMember(new Employee(Job.WAITER,"Michel", true, 64, Personality.OPTIMISTIC, 1));
-        guild.addMember(new Adventurer(Tier.S,0,new ArrayList<>(),new Abilities(50,50,50,50,50),new Mission(),"Michel", true, 64, Personality.OPTIMISTIC,0, MagicType.FIRE));
+        //guild.addMember(new Adventurer(Tier.S,0,new ArrayList<>(),new Abilities(50,50,50,50,50),new Mission(),"Michel", true, 64, Personality.OPTIMISTIC,0, MagicType.FIRE));
         guild.addMember(new Member("Michel", true, 64, Personality.OPTIMISTIC, 1));
         guild.addMember(new Member("Michel", true, 64, Personality.OPTIMISTIC, 1));
         

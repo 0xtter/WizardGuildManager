@@ -33,12 +33,13 @@ public class GuildMasterMenu extends Menu {
                 break;
             case 1:
             case 2:
-                System.out.println("Recruter un aventurier/employé");
+                gm.recruitMember(choice, guild);
+                Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             case 3:
                 gm.talk();
                 super.getAMission(guild);
-                System.out.println("Print a mission");
+                Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             default:
                 this.execute(guild);

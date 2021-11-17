@@ -22,7 +22,7 @@ public class AdventurerMenu extends Menu {
 
     public void execute(Guild guild,Adventurer adv) {
         super.options = new ArrayList<>(Arrays.asList("Retour"));
-        super.options.add("Partir en mission (" + adv.getMissions().getEntitled() + ")");
+        super.options.add("Partir en mission");
         super.showMenu();
         this.runOption(super.getChoice(), guild, adv);
     }
@@ -33,8 +33,8 @@ public class AdventurerMenu extends Menu {
                 Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             case 1:
-                super.getAMission(guild);
-                adv.goOnMission();
+                adv.goOnMission(super.getAMission(guild),guild);
+                Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             default:
                 this.execute(guild);

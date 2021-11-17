@@ -6,6 +6,11 @@
 package wizardguildmanager;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import static wizardguildmanager.GuildMaster.keyboard;
+import static wizardguildmanager.file.Fichier.createListMission;
+
 /**
  *
  * @author ybert
@@ -23,6 +28,75 @@ public class Guild {
         this.name = name;
         this.slogan = slogan;
         this.typeOfGuild = typeOfGuild;
+    }
+
+    public Guild() {
+    }
+
+    public static Guild createGuild() {
+        Scanner keyboard = new Scanner(System.in);
+        Guild guild = new Guild();
+        GuildMaster gm = new GuildMaster("Nom du Maitre de Guilde", true, 0, Personality.OPTIMISTIC, 0);
+        try {
+            System.out.print("\nEntrez le nom de la guilde que vous souhaitez créer :");
+            guild.setName(keyboard.nextLine());
+
+            System.out.print("\nEntrez le slogan de la guilde " + guild.getName() + "?");
+            guild.setSlogan(keyboard.nextLine());
+
+            Integer guildType = -1;
+            do {
+                try {
+                    System.out.print("\nLa guilde " + guild.getName() + " est-elle une guilde officielle(1) ou clandestine(0)?");
+                    guildType = Integer.parseInt(keyboard.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Veuillez entrer le nombre 0 ou 1");
+                }
+            } while (!(guildType == 1 || guildType == 0));
+
+            guild.setTypeOfGuild((guildType == 1) ? Boolean.TRUE : Boolean.FALSE);
+            guild.setAvailableMissions(createListMission());
+            guild.setMembers(new ArrayList<>());
+            guild.setMoney(300);
+            System.out.println("\n" + guild.toString() + "\n");
+            //Création du Guild Master
+
+            gm = createGuildMaster(guild);
+            guild.addMember(gm);
+        } catch (InputMismatchException e) {
+            System.out.println("Une erreur a eu lieu lors de la création de la guilde... Veuillez réessayer");
+            keyboard = new Scanner(System.in); //On reset le buffer d'entrée pour éviter toute nouvelle erreur suite à une ancienne entrée
+            Guild.createGuild();
+        }
+        return guild;
+    }
+
+    private static GuildMaster createGuildMaster(Guild guild) {
+
+        Boolean gender;
+        System.out.print("\nQuel nom voulez vous donner à votre Maître de guilde ?");
+        String name = keyboard.nextLine();
+        Integer genderType = -1;
+        do {
+            try {
+                System.out.print("\nEst-ce que votre mage est un Homme(0) Femme(1)");
+                genderType = Integer.parseInt(keyboard.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Veuillez entrer le nombre 0 ou 1");
+            }
+        } while (!(genderType == 1 || genderType == 0));
+        gender = (genderType.equals(1));
+        Integer age = -1;
+        do {
+            try {
+                System.out.print("\nQuel est l'âge du Maître de guilde?");
+                age = Integer.parseInt(keyboard.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Veuillez entrer un entier positif");
+            }
+        } while (!(age > 0));
+        Personality personality = Personality.rdPersonality();
+        return new GuildMaster(name, gender, age, personality, 0);
     }
 
     public String getName() {
@@ -95,7 +169,15 @@ public class Guild {
 
     @Override
     public String toString() {
-        return "------------" + name + "------------" + "\nLe slogan est '" + slogan + "'\nC'est une guilde " + (typeOfGuild? "officielle" : "clandestine") + "\nLes missions disponibles sont les suivantes : " + availableMissions + "\nVous possédez " + money + " crédits";
+        String str;
+        str = "------------" + this.name + "------------" + "\nLe slogan est '" + this.slogan + "'\nC'est une guilde " + (this.typeOfGuild ? "officielle" : "clandestine") + "\nLes missions disponibles sont les suivantes : |";
+        for (Mission mission : this.availableMissions) {
+            str += "|" + mission.getEntitled() + "|";
+        }
+        str += "\nVotre guilde est composée de " + this.getNumberOfMembers() + " membres";
+        str += "\nVous possédez " + this.money + " crédits";
+
+        return str;
     }
 
 }
