@@ -20,6 +20,11 @@ public class EmployeeMenu extends Menu {
         super(title, menuDescription);
     }
 
+    /**
+     *
+     * @param guild
+     * @param emp
+     */
     public void execute(Guild guild, Employee emp) {
         super.title = "Employé";
         super.menuDescription = "Que doit faire l'employé?";
@@ -28,6 +33,12 @@ public class EmployeeMenu extends Menu {
         this.runOption(super.getChoice(), guild, emp);
     }
 
+    /**
+     *
+     * @param choice
+     * @param guild
+     * @param emp
+     */
     public void runOption(int choice, Guild guild, Employee emp) {
         switch (choice) {
             case 0:

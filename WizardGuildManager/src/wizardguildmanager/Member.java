@@ -116,6 +116,6 @@ public class Member {
      * the member present himself
      */
     public void talk() {
-        System.out.println("Salut je suis " + this.name + " et j'ai "+ this.age + " ans !");
+        System.out.println("Salut je suis " + this.name + " et j'ai "+ this.age + " ans!");
     }
 }

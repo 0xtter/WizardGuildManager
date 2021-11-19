@@ -25,30 +25,35 @@ public class GuildManager extends Menu {
 
     @Override
     public void execute(Guild guild) {
-        super.title = "Maitre de guilde";
-        super.menuDescription = "Que doit faire le maitre de guilde?";
+        super.title = "Commencer";
+        super.menuDescription = "Bienvenue dans le jeu de gestion de guilde";
         super.options = new ArrayList<>(Arrays.asList("Quitter", "Contrôler un membre", "Voir état de la guilde"));
         super.showMenu();
         this.runOption(super.getChoice(), guild);
     }
 
+    /**
+     *
+     * @param choice
+     * @param guild
+     */
     public void runOption(int choice, Guild guild) {
         switch (choice) {
             case 0:
                 System.exit(0);
                 break;
             case 1:
-                Member member1 = super.getAMember(guild, new ArrayList(Arrays.asList("Adventurer","Employee","GuildMaster","Member")));
-                switch(member1.getClass().getSimpleName()){
+                Member member1 = super.getAMember(guild, new ArrayList(Arrays.asList("Adventurer", "Employee", "GuildMaster", "Member")));
+                switch (member1.getClass().getSimpleName()) {
                     case "Adventurer":
-                        ((AdventurerMenu) Menu.menus.get("Aventurier")).execute(guild, (Adventurer)member1);
+                        ((AdventurerMenu) Menu.menus.get("Aventurier")).execute(guild, (Adventurer) member1);
                         break;
                     case "GuildMaster":
-                        ((GuildMasterMenu) Menu.menus.get("Maitre de guilde")).execute(guild, (GuildMaster)member1);
+                        ((GuildMasterMenu) Menu.menus.get("Maitre de guilde")).execute(guild, (GuildMaster) member1);
                         break;
-                                
+
                     case "Employee":
-                        ((EmployeeMenu) Menu.menus.get("Employé")).execute(guild, (Employee)member1);
+                        ((EmployeeMenu) Menu.menus.get("Employé")).execute(guild, (Employee) member1);
                         break;
                     default:
                         Menu.menus.get("Gestion de Guilde").execute(guild);

@@ -5,10 +5,10 @@
  */
 package wizardguildmanager;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import wizardguildmanager.File.Fichier;
 
 /**
  *
@@ -25,15 +25,15 @@ public interface MissionWriter {
      */
     default void writeMissionManuscript(Mission mission) throws IOException {
         String fileName = mission.getEntitled() + ".txt";
-        File myFile = new File("./Display", fileName);
+        File myFile = new File("src/wizardguildmanager/Display", fileName);
         if (myFile.exists()) {
-            openFile("./Display/" + mission.getEntitled() + ".txt");
+            Fichier.openFile("src/wizardguildmanager/Display/" + mission.getEntitled() + ".txt");
             return;
         }
-        creationFile(mission.getEntitled());
+        Fichier.creationFile(mission.getEntitled());
 
         try {
-            FileWriter fw = new FileWriter("./Display/" + fileName, true);
+            FileWriter fw = new FileWriter("src/wizardguildmanager/Display/" + fileName, true);
             fw.write("INTITULE DE LA MISSION -> " + mission.getEntitled().toUpperCase() + "\n\n");
             fw.write("En quoi consiste la mission ? ?\n");
             fw.write("  " + mission.getDescription() + "\n\n");
@@ -46,49 +46,8 @@ public interface MissionWriter {
             System.out.println("error");
         }
 
-        openFile("./Display/" + mission.getEntitled() + ".txt");
+        Fichier.openFile("src/wizardguildmanager/Display/" + mission.getEntitled() + ".txt");
 
     }
 
-    /**
-     * Open the file located at pathFile
-     *
-     * @param pathFile
-     */
-    private static void openFile(String pathFile) {
-        try {
-            //constructor of file class having file as argument  
-            File file = new File(pathFile);
-            if (!Desktop.isDesktopSupported())//check if Desktop is supported by Platform or not  
-            {
-                System.out.println("not supported");
-                return;
-            }
-            Desktop desktop = Desktop.getDesktop();
-            if (file.exists()) //checks file exists or not  
-            {
-                desktop.open(file);              //opens the specified file  
-            }
-        } catch (IOException e) {
-            System.out.println("error");
-        }
-    }
-        /**
-     * Create the file named "name" if it doesn't exist yet
-     *
-     * @param name
-     * @return true if the file is created and false if the file already exist
-     * @throws IOException
-     */
-
-    private static boolean creationFile(String name) throws IOException {
-        File myFile = new File("./Display", name + ".txt");
-        if (myFile.createNewFile()) {
-            System.out.println("File has been correctly created");
-            return true;
-        } else {
-            System.out.println("File already exist");
-            return false;
-        }
-    }
 }

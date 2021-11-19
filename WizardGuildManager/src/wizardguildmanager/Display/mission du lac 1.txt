@@ -3,17 +3,18 @@ INTITULE DE LA MISSION -> MISSION DU LAC 1
 En quoi consiste la mission ? ?
   Cette mission a pour but de determiner la cause de l'assechement de la rivière a cote du village flandria et de regler ce soucis.
 
-Le rang conseillé pour réaliser cette mission est le rang S ou plus
+Le rang conseillé pour réaliser cette mission est le rang C ou plus
 
 Vous aurez besoin d'avoir ces compétences :
 
---------ABILITIES--------
-Charm : 3
+--------Aptitudes--------
+Séduction : 3
 Intelligence : 3
 Endurance : 3
-strength : 3
-Widsom : 3
+Force : 3
+Sagesse : 3
 -------------------------
 
 La récompense en cas de réussite s'élève à 10 pièces d'or
 
+Vous devrez maîtriser cette magie : FIRE

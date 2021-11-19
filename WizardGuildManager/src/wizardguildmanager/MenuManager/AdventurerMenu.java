@@ -20,6 +20,11 @@ public class AdventurerMenu extends Menu {
         super(title, menuDescription);
     }
 
+    /**
+     *
+     * @param guild
+     * @param adv
+     */
     public void execute(Guild guild, Adventurer adv) {
         super.title = "Aventurier";
         super.menuDescription = "Que doit faire l'aventurier?";
@@ -28,6 +33,12 @@ public class AdventurerMenu extends Menu {
         this.runOption(super.getChoice(), guild, adv);
     }
 
+    /**
+     *
+     * @param choice
+     * @param guild
+     * @param adv
+     */
     public void runOption(int choice, Guild guild, Adventurer adv) {
         switch (choice) {
             case 0:

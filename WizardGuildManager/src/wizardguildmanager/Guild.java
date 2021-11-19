@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import static wizardguildmanager.GuildMaster.keyboard;
-import static wizardguildmanager.file.Fichier.createListMission;
+import static wizardguildmanager.File.Fichier.createListMission;
 
 /**
  *
@@ -20,7 +20,7 @@ public class Guild {
     private String name;
     private String slogan;
     private Boolean typeOfGuild;
-    public static ArrayList<Member> members;
+    private ArrayList<Member> members;
     private ArrayList<Mission> availableMissions;
     private int money;
 
@@ -30,8 +30,7 @@ public class Guild {
         this.typeOfGuild = typeOfGuild;
     }
 
-    public Guild() {
-    }
+    public Guild(){}
 
     public static Guild createGuild() {
         Scanner keyboard = new Scanner(System.in);
@@ -116,7 +115,7 @@ public class Guild {
     }
 
     public Integer getNumberOfMembers() {
-        return Guild.members.size();
+        return this.members.size();
     }
 
     public ArrayList<Mission> getAvailableMissions() {
@@ -175,7 +174,7 @@ public class Guild {
             str += "|" + mission.getEntitled() + "|";
         }
         str += "\nVotre guilde est composée de " + this.getNumberOfMembers() + " membres";
-        str += "\nVous possédez " + this.money + " crédits";
+        str += "\nVous possédez " + this.money + " pièces d'or";
 
         return str;
     }

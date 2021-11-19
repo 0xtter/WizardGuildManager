@@ -20,14 +20,25 @@ public class GuildMasterMenu extends Menu {
         super(title, menuDescription);
     }
 
+    /**
+     *
+     * @param guild
+     * @param gm
+     */
     public void execute(Guild guild, GuildMaster gm) {
-        super.title = "Commencer";
-        super.menuDescription = "Bienvenue dans le jeu de gestion de guilde";
-        super.options = new ArrayList<>(Arrays.asList("Retour", "Recruter un aventurier (50 crédits)", "Recruter un employé (50 crédits)", "Imprimer une mission", "Se présenter"));
+        super.title = "Maitre de guilde";
+        super.menuDescription = "Que doit faire le maitre de guilde?";
+        super.options = new ArrayList<>(Arrays.asList("Retour", "Recruter un aventurier (50 pièces d'or)", "Recruter un employé (50 pièces d'or)", "Imprimer une mission", "Se présenter"));
         super.showMenu();
         this.runOption(super.getChoice(), guild, gm);
     }
 
+    /**
+     *
+     * @param choice
+     * @param guild
+     * @param gm
+     */
     public void runOption(int choice, Guild guild, GuildMaster gm) {
         switch (choice) {
             case 0:
@@ -38,7 +49,7 @@ public class GuildMasterMenu extends Menu {
                 break;
             case 3:
                 gm.talk();
-                super.getAMission(guild);
+                gm.writeMissionManuscript(super.getAMission(guild));
                 break;
             case 4:
                 gm.talk();

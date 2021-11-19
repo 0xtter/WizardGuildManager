@@ -13,12 +13,17 @@ public enum Job {
     WAITER,
     SINGER,
     BARTENDER;
-        @Override
-    public String toString(Job this) {
+
+    @Override
+    public String toString( 
+        Job this) {
        return switch (this) {
-            case WAITER -> "serveur,euse";
-            case SINGER -> "chanteur,euse";
-            case BARTENDER -> "barman,maid";
+            case WAITER ->
+                "serveur,euse";
+            case SINGER ->
+                "chanteur,euse";
+            case BARTENDER ->
+                "barman,maid";
         };
     }
 }

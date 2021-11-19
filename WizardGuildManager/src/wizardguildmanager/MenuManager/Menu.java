@@ -23,10 +23,16 @@ public class Menu {
     public String title;
     public String menuDescription;
     public ArrayList<String> options = new ArrayList<>();
-    private final int menuWidth = 50;
-    private final String menuCharacter = "-";
+    private static final int MENU_WIDTH = 50;
+    private static final String MENU_CHARACTER = "-";
     static Scanner keyboard = new Scanner(System.in);
 
+    /**
+     * Constructor
+     *
+     * @param title
+     * @param menuDescription
+     */
     public Menu(String title, String menuDescription) {
         this.title = title;
         this.menuDescription = menuDescription;
@@ -44,19 +50,28 @@ public class Menu {
         new EmployeeMenu("Employé", "Que doit faire l'employé?");
     }
 
+    /**
+     * Show the title of the Menu in the console
+     */
     private void showTitle() {
-        System.out.println(menuCharacter.repeat((int) Math.floor((menuWidth - this.title.length()) / 2)) + this.title + menuCharacter.repeat((int) Math.ceil((menuWidth - this.title.length()) / 2)));
-        System.out.println(" ".repeat((int) Math.floor((menuWidth - this.menuDescription.length()) / 2)) + this.menuDescription);
+        System.out.println(Menu.MENU_CHARACTER.repeat((int) Math.floor((Menu.MENU_WIDTH - this.title.length()) / 2)) + this.title + Menu.MENU_CHARACTER.repeat((int) Math.ceil((Menu.MENU_WIDTH - this.title.length()) / 2)));
+        System.out.println(" ".repeat((int) Math.floor((Menu.MENU_WIDTH - this.menuDescription.length()) / 2)) + this.menuDescription);
         System.out.println("");
     }
 
+    /**
+     * Show the Inputs of the menu in the console
+     */
     private void showInput() {
-        System.out.println(menuCharacter.repeat(menuWidth));
+        System.out.println(Menu.MENU_CHARACTER.repeat(Menu.MENU_WIDTH));
     }
 
+    /**
+     * Wait until the user press Enter
+     */
     public static void waitForInput() {
         try {
-            System.out.print("Press any key to continue...");
+            System.out.print("Appuyez sur Entrer pour continuer...");
             keyboard = new Scanner(System.in);
             keyboard.nextLine();
         } catch (Exception e) {
@@ -64,6 +79,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Show the options of the actual menu in the console
+     */
     private void showOptions() {
         for (int i = 0; i < this.options.size(); i++) {
             System.out.printf("%2d ", i);
@@ -71,6 +89,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Display the entire Menu
+     */
     public void showMenu() {
         System.out.println("");
         this.showTitle();
@@ -79,6 +100,11 @@ public class Menu {
         System.out.println("");
     }
 
+    /**
+     * Return the choice in the Menu of the user
+     *
+     * @return choice
+     */
     public int getChoice() {
         try {
             keyboard = new Scanner(System.in);
@@ -91,6 +117,13 @@ public class Menu {
         }
     }
 
+    /**
+     * Allow the user to select a member
+     *
+     * @param guild
+     * @param types
+     * @return Returns the selected member
+     */
     public Member getAMember(Guild guild, ArrayList<String> types) {
         this.title = "Liste des membres";
         this.menuDescription = "Veuillez selectionner un membre";
@@ -113,6 +146,12 @@ public class Menu {
 
     }
 
+    /**
+     * Allow the user to select a mission
+     *
+     * @param guild
+     * @return Returns the selected mission
+     */
     public Mission getAMission(Guild guild) {
         this.title = "Liste des missions";
         this.menuDescription = "Veuillez selectionner une mission";
@@ -141,6 +180,11 @@ public class Menu {
         return sb.toString();
     }
 
+    /**
+     * Runs the menu to display it and to get input of the user
+     *
+     * @param guild
+     */
     public void execute(Guild guild) {
         System.out.println("Fonction non implémentée");
     }

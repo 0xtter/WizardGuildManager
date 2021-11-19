@@ -6,7 +6,6 @@
 package wizardguildmanager;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Scanner;
 
 /**
@@ -55,6 +54,10 @@ public class GuildMaster extends Member implements MissionWriter {
      * @param guild
      */
     public void recruitMember(int choice, Guild guild) {
+        if (guild.getMoney() < 50) {
+            System.out.println("Vous ne possedez pas assez de pièces d'or... Essayez donc de partir en mission pour vous en faire!");
+            return;
+        }
         Boolean gender;
         System.out.print("\nQuel nom voulez vous donner à votre membre ?");
         String name = keyboard.nextLine();
@@ -91,7 +94,7 @@ public class GuildMaster extends Member implements MissionWriter {
                     } catch (NumberFormatException e) {
                         System.out.println("Veuillez entrer un entier positif entre 1 et 5");
                     }
-                } while (magicNumber < 0 && magicNumber > 6);
+                } while (!(magicNumber > 0 && magicNumber < 6));
                 MagicType magicType = null;
                 switch (magicNumber) {
                     case 1 ->
@@ -119,7 +122,7 @@ public class GuildMaster extends Member implements MissionWriter {
                     } catch (NumberFormatException e) {
                         System.out.println("Veuillez entrer un entier positif entre 1 et 3");
                     }
-                } while (jobNumber < 0 && jobNumber > 4);
+                } while (jobNumber < 0 || jobNumber > 4);
                 Job job = null;
                 switch (jobNumber) {
                     case 1 ->

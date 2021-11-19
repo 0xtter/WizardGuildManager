@@ -20,6 +20,11 @@ public class Start extends Menu {
 
     }
 
+    /**
+     * Create a guild
+     *
+     * @return A guild
+     */
     public Guild execute() {
         super.title = "Commencer";
         super.menuDescription = "Bienvenue dans le jeu de gestion de guilde";
@@ -40,7 +45,6 @@ public class Start extends Menu {
             default:
                 guild = runOption(super.getChoice());
                 break;
-
         }
         return guild;
     }
