@@ -6,7 +6,6 @@
 package wizardguildmanager;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import wizardguildmanager.MenuManager.*;
 
@@ -20,19 +19,12 @@ public class WizardGuildManager {
      * @param args the command line arguments
      */
     static Scanner keyboard = new Scanner(System.in);
+
     public static void main(String[] args) throws IOException {
         Menu.createMenu();
-        
-        Start start = (Start)(Menu.menus.get("Commencer"));
-        Guild guild = start.execute();
-        
-        guild.addMember(new Member("Michel", true, 64, Personality.OPTIMISTIC, 1));
-        
-        guild.addMember(new Employee(Job.WAITER,"Michel", true, 64, Personality.OPTIMISTIC, 1));
-        //guild.addMember(new Adventurer(Tier.S,0,new ArrayList<>(),new Abilities(50,50,50,50,50),new Mission(),"Michel", true, 64, Personality.OPTIMISTIC,0, MagicType.FIRE));
-        guild.addMember(new Member("Michel", true, 64, Personality.OPTIMISTIC, 1));
-        guild.addMember(new Member("Michel", true, 64, Personality.OPTIMISTIC, 1));
-        
+
+        Guild guild = ((Start) Menu.menus.get("Commencer")).execute();
+
         Menu.menus.get("Gestion de Guilde").execute(guild);
     }
 }

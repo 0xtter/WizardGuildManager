@@ -6,9 +6,8 @@
 package wizardguildmanager;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -35,16 +34,18 @@ public class GuildMaster extends Member implements MissionWriter {
      */
     @Override
     public void talk() {
-        System.out.println("Bonjour, je suis " + this.getName() + " le maître de cette guilde, et je suis là pour tous vous protéger !");
+        System.out.println("Bonjour, je suis " + this.getName() + " le maître de cette guilde, je suis là pour tous vous protéger !");
     }
+
     @Override
-    public void writeMissionManuscript(Mission mission){
+    public void writeMissionManuscript(Mission mission) {
         try {
             MissionWriter.super.writeMissionManuscript(mission);
         } catch (IOException ex) {
             System.out.println("Il n'y a plus d'encre!");
         }
     }
+
     /**
      * Ask for the characteristic of an adventurer or an emplyee depending
      * "choice" (1 for adventurer, 2 for employee) and add this member to the
@@ -55,12 +56,12 @@ public class GuildMaster extends Member implements MissionWriter {
      */
     public void recruitMember(int choice, Guild guild) {
         Boolean gender;
-        System.out.print("\nQuel nom voulez vous donner à votre mage ?");
+        System.out.print("\nQuel nom voulez vous donner à votre membre ?");
         String name = keyboard.nextLine();
         Integer genderType = -1;
         do {
             try {
-                System.out.print("\nEst-ce que votre mage est un Homme(0) Femme(1)");
+                System.out.print("\nEst-ce que votre membre est un Homme(0) Femme(1)");
                 genderType = Integer.parseInt(keyboard.nextLine());
             } catch (NumberFormatException e) {
                 System.out.print("Veuillez entrer le nombre 0) ou 1)");
@@ -70,7 +71,7 @@ public class GuildMaster extends Member implements MissionWriter {
         Integer age = -1;
         do {
             try {
-                System.out.print("\nQuel est l'âge de votre mage ?");
+                System.out.print("\nQuel est l'âge de votre membre ?");
                 age = Integer.parseInt(keyboard.nextLine());
             } catch (NumberFormatException e) {
                 System.out.print("\nVeuillez entrer un entier positif");
@@ -85,7 +86,7 @@ public class GuildMaster extends Member implements MissionWriter {
                 Integer magicNumber = -1;
                 do {
                     try {
-                        System.out.print("\nQuel type de magie votre mage maîtrise ? Fire(1) Ice(2) Thunder(3) Water(4) Summoner(5)\nentrez 1, 2, 3, 4 ou 5");
+                        System.out.print("\nQuel type de magie votre mage maîtrise ? Fire(1) Ice(2) Thunder(3) Water(4) Summoner(5) ");
                         magicNumber = Integer.parseInt(keyboard.nextLine());
                     } catch (NumberFormatException e) {
                         System.out.println("Veuillez entrer un entier positif entre 1 et 5");
@@ -113,7 +114,7 @@ public class GuildMaster extends Member implements MissionWriter {
                 Integer jobNumber = -1;
                 do {
                     try {
-                        System.out.print("\nQuel est le Job du membre ? serveur(1) chanteur(2) barman(3)\nentrez 1, 2, 3");
+                        System.out.print("\nCotre employé est-il un serveur,euse(1), un chanteur,euse(2)  ou un barman,maid(3)? ");
                         jobNumber = Integer.parseInt(keyboard.nextLine());
                     } catch (NumberFormatException e) {
                         System.out.println("Veuillez entrer un entier positif entre 1 et 3");
@@ -130,7 +131,9 @@ public class GuildMaster extends Member implements MissionWriter {
                 }
                 Employee employee = new Employee(job, name, gender, age, personality, tag);
                 guild.addMember(employee);
+
             }
         }
+        guild.setMoney(guild.getMoney() - 50);
     }
 }

@@ -36,7 +36,7 @@ public class Guild {
     public static Guild createGuild() {
         Scanner keyboard = new Scanner(System.in);
         Guild guild = new Guild();
-        GuildMaster gm = new GuildMaster("Nom du Maitre de Guilde", true, 0, Personality.OPTIMISTIC, 0);
+        GuildMaster gm = new GuildMaster("Nom du Maitre de Guilde", true, 0, Personality.OPTIMISTIC, 1);
         try {
             System.out.print("\nEntrez le nom de la guilde que vous souhaitez créer :");
             guild.setName(keyboard.nextLine());
@@ -116,7 +116,7 @@ public class Guild {
     }
 
     public Integer getNumberOfMembers() {
-        return this.members.size();
+        return Guild.members.size();
     }
 
     public ArrayList<Mission> getAvailableMissions() {

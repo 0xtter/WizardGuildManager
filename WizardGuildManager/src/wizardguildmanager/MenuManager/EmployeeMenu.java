@@ -21,7 +21,9 @@ public class EmployeeMenu extends Menu {
     }
 
     public void execute(Guild guild, Employee emp) {
-        super.options = new ArrayList<>(Arrays.asList("Retour","Imprimer une mission"));
+        super.title = "Employé";
+        super.menuDescription = "Que doit faire l'employé?";
+        super.options = new ArrayList<>(Arrays.asList("Retour", "Imprimer une mission", "Se présenter"));
         super.showMenu();
         this.runOption(super.getChoice(), guild, emp);
     }
@@ -29,16 +31,20 @@ public class EmployeeMenu extends Menu {
     public void runOption(int choice, Guild guild, Employee emp) {
         switch (choice) {
             case 0:
-                Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             case 1:
                 emp.talk();
-                emp.writeMissionManuscript(super.getAMission(guild)); 
-                Menu.menus.get("Gestion de Guilde").execute(guild);
+                emp.writeMissionManuscript(super.getAMission(guild));
+                break;
+            case 2:
+                emp.talk();
+                Menu.waitForInput();
                 break;
             default:
                 this.execute(guild);
                 break;
         }
+
+        Menu.menus.get("Gestion de Guilde").execute(guild);
     }
 }

@@ -21,7 +21,9 @@ public class GuildMasterMenu extends Menu {
     }
 
     public void execute(Guild guild, GuildMaster gm) {
-        super.options = new ArrayList<>(Arrays.asList("Retour", "Recruter un aventurier", "Recruter un employé", "Imprimer une mission"));
+        super.title = "Commencer";
+        super.menuDescription = "Bienvenue dans le jeu de gestion de guilde";
+        super.options = new ArrayList<>(Arrays.asList("Retour", "Recruter un aventurier (50 crédits)", "Recruter un employé (50 crédits)", "Imprimer une mission", "Se présenter"));
         super.showMenu();
         this.runOption(super.getChoice(), guild, gm);
     }
@@ -29,21 +31,23 @@ public class GuildMasterMenu extends Menu {
     public void runOption(int choice, Guild guild, GuildMaster gm) {
         switch (choice) {
             case 0:
-                Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             case 1:
             case 2:
                 gm.recruitMember(choice, guild);
-                Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             case 3:
                 gm.talk();
                 super.getAMission(guild);
-                Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
+            case 4:
+                gm.talk();
+                Menu.waitForInput();
             default:
                 this.execute(guild);
                 break;
         }
+
+        Menu.menus.get("Gestion de Guilde").execute(guild);
     }
 }

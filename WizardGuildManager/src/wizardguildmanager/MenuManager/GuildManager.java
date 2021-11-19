@@ -25,6 +25,8 @@ public class GuildManager extends Menu {
 
     @Override
     public void execute(Guild guild) {
+        super.title = "Maitre de guilde";
+        super.menuDescription = "Que doit faire le maitre de guilde?";
         super.options = new ArrayList<>(Arrays.asList("Quitter", "Contrôler un membre", "Voir état de la guilde"));
         super.showMenu();
         this.runOption(super.getChoice(), guild);
@@ -37,7 +39,6 @@ public class GuildManager extends Menu {
                 break;
             case 1:
                 Member member1 = super.getAMember(guild, new ArrayList(Arrays.asList("Adventurer","Employee","GuildMaster","Member")));
-                System.out.println(member1);
                 switch(member1.getClass().getSimpleName()){
                     case "Adventurer":
                         ((AdventurerMenu) Menu.menus.get("Aventurier")).execute(guild, (Adventurer)member1);
@@ -56,7 +57,7 @@ public class GuildManager extends Menu {
                 break;
             case 2:
                 System.out.println("\n" + guild.toString() + "\n");
-                keyboard.nextLine();
+                Menu.waitForInput();
                 Menu.menus.get("Gestion de Guilde").execute(guild);
                 break;
             default:

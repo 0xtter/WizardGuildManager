@@ -21,6 +21,8 @@ public class Start extends Menu {
     }
 
     public Guild execute() {
+        super.title = "Commencer";
+        super.menuDescription = "Bienvenue dans le jeu de gestion de guilde";
         super.options = new ArrayList<>(Arrays.asList("Quitter", "Créer une nouvelle partie"));
         super.showMenu();
         return this.runOption(super.getChoice());

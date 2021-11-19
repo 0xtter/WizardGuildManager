@@ -8,13 +8,10 @@ package wizardguildmanager.MenuManager;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import wizardguildmanager.Guild;
-import wizardguildmanager.GuildMaster;
 import wizardguildmanager.Member;
 import wizardguildmanager.Mission;
-import wizardguildmanager.Personality;
 
 /**
  *
@@ -23,7 +20,7 @@ import wizardguildmanager.Personality;
 public class Menu {
 
     public static Map<String, Menu> menus = new HashMap<String, Menu>();
-    private String title;
+    public String title;
     public String menuDescription;
     public ArrayList<String> options = new ArrayList<>();
     private final int menuWidth = 50;
@@ -42,11 +39,9 @@ public class Menu {
     public static void createMenu() {
         new Start("Commencer", "Bienvenue dans le jeu de gestion de guilde");
         new GuildManager("Gestion de Guilde", "Choisissez un action à effectuer");
-        new ListMember("Liste des membres", "Quel membre choisissez-vous?");
         new AdventurerMenu("Aventurier", "Que doit faire l'aventurier?");
         new GuildMasterMenu("Maitre de guilde", "Que doit faire le maitre de guilde?");
         new EmployeeMenu("Employé", "Que doit faire l'employé?");
-        new ListMission("Liste des missions", "Quelle mission voulez vous consulter?");
     }
 
     private void showTitle() {
@@ -57,6 +52,16 @@ public class Menu {
 
     private void showInput() {
         System.out.println(menuCharacter.repeat(menuWidth));
+    }
+
+    public static void waitForInput() {
+        try {
+            System.out.print("Press any key to continue...");
+            keyboard = new Scanner(System.in);
+            keyboard.nextLine();
+        } catch (Exception e) {
+            System.out.println("An Error has occured continuing the execution...");
+        }
     }
 
     private void showOptions() {
@@ -125,10 +130,6 @@ public class Menu {
             return getAMission(guild);
         }
     }
-
-
-
-    
 
     @Override
     public String toString() {

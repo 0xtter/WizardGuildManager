@@ -11,11 +11,13 @@ import java.io.IOException;
  *
  * @author ybert
  */
-public class Employee extends Member implements MissionWriter{
+public class Employee extends Member implements MissionWriter {
+
     private Job job;
 
     /**
      * Constructor
+     *
      * @param job
      * @param name
      * @param gender
@@ -27,7 +29,7 @@ public class Employee extends Member implements MissionWriter{
         super(name, gender, age, personality, memberTag);
         this.job = job;
     }
-    
+
     /**
      *
      * @return the job of the employee
@@ -38,19 +40,25 @@ public class Employee extends Member implements MissionWriter{
 
     /**
      * set the job of the employee
+     *
      * @param job
      */
     public void setJob(Job job) {
         this.job = job;
     }
-    
+
     @Override
-    public void writeMissionManuscript(Mission mission){
+    public void writeMissionManuscript(Mission mission) {
         try {
             MissionWriter.super.writeMissionManuscript(mission);
         } catch (IOException ex) {
             System.out.println("Il n'y a plus d'encre!");
         }
     }
-    
+
+    @Override
+    public void talk() {
+        System.out.println("Bonjour, je suis " + this.getName() + " je suis un(e) " + this.job.toString() + " de la guilde! ");
+    }
+
 }
