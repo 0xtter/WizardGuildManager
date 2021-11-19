@@ -5,6 +5,13 @@
  */
 package wizardguildmanager;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import static wizardguildmanager.file.Fichier.createListMission;
+import static wizardguildmanager.file.Fichier.createMissionFile;
 /**
  *
  * @author DESRUMEAUX Thomas
@@ -42,13 +49,16 @@ public class WizardGuildManager {
 //        GuildMaster master = new GuildMaster(name, gender, age, personality, tag);
 //        ArrayList<Member> members = new ArrayList<>();
 //        members.add(master);
-        //ArrayList<Mission> missions = new ArrayList<>();
+            ArrayList<Mission> missions = new ArrayList<>();
 //        Guild guild = new Guild ("Guild", "slogan", true, members, 1, missions, 400);
 //        //(GuildMaster)(guild.getMembers().get(0)).recruitMember(1, guild);
 //        GuildMaster maitre = (GuildMaster) guild.getMembers().get(0);
 //        maitre.recruitMember(1, guild);
 //        System.out.println(guild.getMembers().toString());
- 
+            missions = createListMission();
+            System.out.println(missions.get(0).getAffinity());
+            createMissionFile(missions.get(1));
+
         
 
 	

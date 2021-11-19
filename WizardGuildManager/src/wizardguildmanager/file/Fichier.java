@@ -20,10 +20,8 @@ import java.util.List;
 import java.util.ArrayList;
 import wizardguildmanager.Abilities;
 import wizardguildmanager.MagicType;
-import static wizardguildmanager.MagicType.setMagicType;
 import wizardguildmanager.Mission;
 import wizardguildmanager.Tier;
-import static wizardguildmanager.Tier.setTier;
 /**
  *
  * @author ybert
@@ -36,12 +34,12 @@ public class Fichier {
      * @return true if the file is created and false if the file already exist
      * @throws IOException
      */
-    public static String filePath = "./";
+    
     
     
     
     private static boolean creationFile(String name) throws IOException {  
-        File myFile = new File("./Display",name + ".txt");
+        File myFile = new File("src/wizardguildmanager/Display/",name + ".txt");
         if(myFile.createNewFile()) 
         {
             System.out.println("File has been correctly created");
@@ -103,7 +101,7 @@ public class Fichier {
     private static ArrayList<String> getAllFile() 
     {
         ArrayList<String> txtList = new ArrayList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get("./Mission")))
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get("src/wizardguildmanager/Mission")))
         {
             for (Path file: stream) {
                 txtList.add(file.getFileName().toString());
@@ -111,7 +109,7 @@ public class Fichier {
         }
         catch (IOException | DirectoryIteratorException ex) 
         {
-            System.out.println("problem");
+            System.out.println("problem with getting the file");
         }
         return txtList;
     }
@@ -129,7 +127,7 @@ public class Fichier {
       for (int i = 0; i < txtList.size(); i++)
       {
           
-          missions.add(extractMissionFromTxt("./Mission" + "/" + txtList.get(i)));
+          missions.add(extractMissionFromTxt("src/wizardguildmanager/Mission/" + txtList.get(i)));
           
       }
       
@@ -168,10 +166,10 @@ public class Fichier {
     public static void createMissionFile(Mission mission) throws IOException 
     {
         String fileName = mission.getEntitled() + ".txt";
-        File myFile = new File ( "./Display", fileName);
+        File myFile = new File ( "src/wizardguildmanager/Display", fileName);
         if (myFile.exists())
         {
-            openFile("./Display/" + mission.getEntitled() + ".txt");
+            openFile("src/wizardguildmanager/Display/" + mission.getEntitled() + ".txt");
             return;
         }
         creationFile(mission.getEntitled());
@@ -179,7 +177,7 @@ public class Fichier {
         
         try
         {
-            FileWriter fw = new FileWriter("./Display/" + fileName,true);
+            FileWriter fw = new FileWriter("src/wizardguildmanager/Display/" + fileName,true);
             fw.write("INTITULE DE LA MISSION -> " + mission.getEntitled().toUpperCase() + "\n\n");           
             fw.write("En quoi consiste la mission ? ?\n");
             fw.write("  " + mission.getDescription() + "\n\n");
@@ -194,7 +192,7 @@ public class Fichier {
             System.out.println("error");
         }
         
-        openFile("./Display/" + mission.getEntitled() + ".txt");
+        openFile("src/wizardguildmanager/Display/" + mission.getEntitled() + ".txt");
 
     }         
     
