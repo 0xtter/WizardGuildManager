@@ -1,0 +1,20 @@
+INTITULE DE LA MISSION -> AMBASSADEUR
+
+En quoi consiste la mission ? ?
+  Il nous faut un mage pour nous représenter lors d'une audience au conseil de magie pour faire un rapport des dégats causés par la guilde lors de nos missions. On raconte que le chef du conseil apprécie les invoquateurs.
+
+Le rang conseillé pour réaliser cette mission est le rang S ou plus
+
+Vous aurez besoin d'avoir ces compétences :
+
+--------Aptitudes--------
+Séduction : 5
+Intelligence : 4
+Endurance : 2
+Force : 2
+Sagesse : 5
+-------------------------
+
+La récompense en cas de réussite s'élève à 50 pièces d'or
+
+Vous devrez maîtriser cette magie : SUMMONER

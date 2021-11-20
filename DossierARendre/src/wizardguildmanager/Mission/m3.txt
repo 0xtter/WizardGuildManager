@@ -1,0 +1,10 @@
+Escorte du conseillé de la ville
+B
+ICE
+3
+3
+2
+3
+0
+Le conseillé de la ville doit se rendre dans les montagnes du continent des glaces pour y rencontrer le maire d'une ville afin de conclure un marché, escortez le.
+20

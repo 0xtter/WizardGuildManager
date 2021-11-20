@@ -1,0 +1,20 @@
+INTITULE DE LA MISSION -> LA CHÈVRE PERDU DE MONSIEUR SEGUIN
+
+En quoi consiste la mission ? ?
+  Monsieur Seguin a perdu sa chèvre, et la police refuse de l'aider, il se tourne donc vers notre guilde, aide la à la retrouver !
+
+Le rang conseillé pour réaliser cette mission est le rang C ou plus
+
+Vous aurez besoin d'avoir ces compétences :
+
+--------Aptitudes--------
+Séduction : 0
+Intelligence : 0
+Endurance : 3
+Force : 3
+Sagesse : 3
+-------------------------
+
+La récompense en cas de réussite s'élève à 10 pièces d'or
+
+Vous devrez maîtriser cette magie : SUMMONER
