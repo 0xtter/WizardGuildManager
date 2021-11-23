@@ -1,0 +1,10 @@
+Mission du lac
+C
+WATER
+2
+3
+0
+2
+0
+Cette mission a pour but de determiner la cause de l'assèchement de la rivière à côte du village flandria et de régler ce soucis.
+10
